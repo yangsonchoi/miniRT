@@ -16,16 +16,22 @@ MLX_DIR		= ./minilibx/
 MLX_HDRS	= $(minilibx)/ 
 
 HDRS_LIST	= minirt.h	\
+			  parse.h	\
+			  utils.h
 
 HDRS_DIR	= ./include/
 HDRS		= $(addprefix $(HDRS_DIR), $(HDRS_LIST))
 
 SRCS_DIR	= ./source/
+P_DIR		= parse/
 V_DIR		= vector/
-U_DIR		= utils.h/
+U_DIR		= utils/
 
-SRCS_LIST	= minirt.c					\
-			  $(U_DIR)utils.c
+SRCS_LIST	= minirt.c						\
+			  $(P_DIR)parse.c				\
+			  $(P_DIR)parse_description.c	\
+			  $(U_DIR)error.c				\
+			  $(U_DIR)get_next_line.c
 
 SRCS		= $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
@@ -57,10 +63,8 @@ $(MLX) :
 clean :
 	$(RM) $(RMFLAGS) $(OBJS_DIR) $(OBJS)
 	$(MAKE) -C $(LIBFT_DIR) clean
-	cd minilibx && $(RM) $(RMFLAGS) *.o
 fclean : clean
 	$(RM) $(RMFLAGS) $(LIBFT)
-	$(RM) $(RMFLAGS) $(MLX)
 	$(RM) $(RMFLAGS) $(NAME)
 
 re : fclean $(NAME)

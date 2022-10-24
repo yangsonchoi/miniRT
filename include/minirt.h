@@ -63,7 +63,7 @@ typedef	struct s_cylinder
 	t_color	c;
 }	t_cylinder;
 
-typedef struct s_file
+typedef struct s_descr
 {
 	t_ambient	al;
 	t_camera	c;
@@ -74,7 +74,7 @@ typedef struct s_file
 	t_plane		*pl;
 	int			cy_cnt;
 	t_cylinder	*cy;
-}	t_file;
+}	t_descr;
 
 typedef struct s_img
 {
