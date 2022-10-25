@@ -5,6 +5,9 @@
 
 #include <stdbool.h>
 
+static enum e_des_type	des_type(char *parse);
+
+
 void	parse_description(char *input, t_descr *descr)
 {
 	char			**des;
@@ -25,14 +28,14 @@ void	parse_description(char *input, t_descr *descr)
 		else if (type == PLANE)
 			parse_pl(des, descr);
 		else if (type == CYLINDER)
-			parse_c(des, descr);
+			parse_cy(des, descr);
 		else if (type == ELSE)
-			parse_else(des, descr);
+			parse_else(descr);
 		free_dchar(des);
 	}
 }
 
-enum e_des_type	des_type(char *parse)
+static enum e_des_type	des_type(char *parse)
 {
 	int	len;
 	
@@ -53,3 +56,15 @@ enum e_des_type	des_type(char *parse)
 		return (ELSE);
 }
 
+static void parse_cy(char **input, t_descr *descr)
+{
+    int i;
+    
+}
+
+static void parse_else(char **input, t_descr *descr)
+{
+    free_descr(descr);
+    free_dchar(input);
+	err_exit("invalid scene description", 0);
+}
