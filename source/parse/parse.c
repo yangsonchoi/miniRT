@@ -4,6 +4,7 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include <stdbool.h>
 
 void	parse_scene(t_descr *descr, char *file_name)
 {
@@ -26,8 +27,8 @@ void	parse_scene(t_descr *descr, char *file_name)
 	}
 	if (check_discription(descr) == false)
 	{
-		free_
-		err_exit()
+		free_description(descr);
+		err_exit("invalid scene description", 0);
 	}
 	close (fd);
 }

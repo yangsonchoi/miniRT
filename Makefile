@@ -11,9 +11,9 @@ RMFLAGS		= -rf
 LIBFT		= $(LIBFT_DIR)libft.a
 LIBFT_DIR	= ./libft/
 
-MLX			= $(MLX_DIR)libmlx.dylib
-MLX_DIR		= ./minilibx/
-MLX_HDRS	= $(minilibx)/ 
+# MLX			= $(MLX_DIR)libmlx.dylib
+# MLX_DIR		= ./minilibx/
+# MLX_HDRS	= $(minilibx)/ 
 
 HDRS_LIST	= minirt.h	\
 			  parse.h	\
@@ -41,7 +41,7 @@ OBJS	= $(addprefix $(OBJS_DIR), $(OBJS_LIST))
 
 all : $(NAME)
 
-$(NAME) : $(LIBFT) $(MLX) $(OBJS_DIR) $(OBJS)
+$(NAME) : $(LIBFT) $(OBJS_DIR) $(OBJS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
 
 $(OBJS_DIR) :
