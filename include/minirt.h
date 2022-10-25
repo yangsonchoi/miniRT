@@ -53,7 +53,7 @@ typedef struct s_plane
 	t_color	c;
 }	t_plane;
 
-typedef	struct s_cylinder
+typedef struct s_cylinder
 {
 	t_vec3	p;
 	double	d;
@@ -63,16 +63,24 @@ typedef	struct s_cylinder
 	t_color	c;
 }	t_cylinder;
 
+typedef struct s_cnt
+{
+	int		al_cnt;
+	int		c_cnt;
+	int		l_cnt;
+	int		sp_cnt;
+	int		pl_cnt;
+	int		cy_cnt;
+}	t_cnt;
+
 typedef struct s_descr
 {
+	t_cnt		cnt;
 	t_ambient	al;
 	t_camera	c;
 	t_light		l;
-	int			sp_cnt;
 	t_sphere	*sp;
-	int			pl_cnt;
 	t_plane		*pl;
-	int			cy_cnt;
 	t_cylinder	*cy;
 }	t_descr;
 

@@ -6,9 +6,9 @@
 
 enum    e_des_type
 {
-    AMBIET_LIGHT,
+    AMBIENT_LIGHT,
     CAMERA,
-    LGIHT,
+    LIGHT,
     SPHERE,
     PLANE,
     CYLINDER,
@@ -23,6 +23,6 @@ void	parse_scene(t_descr *descr, char *file);
 /*
 ** parse_description.c
 */
-bool    parse_description(char *temp, t_descr *descr);
+void	parse_description(char *input, t_descr *descr);
 
 #endif
