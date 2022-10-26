@@ -1,16 +1,32 @@
 #ifndef UTILS_H
 # define UTILS_H
 
-# include <errno.h>
+# include "minirt.h"
+# include <stdbool.h>
+
+/*
+** free.c
+*/
+void	free_dcharp(char **input);
+void	free_description(t_descr *descr);
 
 /*
 ** error.c
 */
 void	err_exit(char *str, int input);
+void	err_exit_descr(t_descr *descr, char **input);
 
 /*
 ** get_next_line.c
 */
 char	*get_next_line(int fd);
+
+/*
+** check.c
+*/
+bool	check_dcharp_num(int i, char **input);
+bool	check_syntax_dbl(char *input);
+bool	check_syntax_vec(char *input);
+bool	check_syntax_rgb(char *input);
 
 #endif

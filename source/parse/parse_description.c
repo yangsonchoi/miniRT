@@ -7,31 +7,30 @@
 
 static enum e_des_type	des_type(char *parse);
 
-
 void	parse_description(char *input, t_descr *descr)
 {
 	char			**des;
 	enum e_des_type	type;
 
-	des = ft_split(input, ' ');
+	des = ft_split(ft_strtrim(input, "\n"), ' ');
 	if (des != NULL)
 	{
-		type = get_des_type(des[0]);
-		if (type == AMBIENT_LIGHT)
-			parse_al(des, descr);
-		else if (type == CAMERA)
-			parse_c(des, descr);
-		else if (type == LIGHT)
-			parse_l(des, descr);
-		else if (type == SPHERE)
-			parse_sp(des, descr);
-		else if (type == PLANE)
-			parse_pl(des, descr);
-		else if (type == CYLINDER)
+		type = des_type(des[0]);
+		// if (type == AMBIENT_LIGHT)
+		// 	parse_al(des, descr);
+		// else if (type == CAMERA)
+		// 	parse_c(des, descr);
+		// else if (type == LIGHT)
+		// 	parse_l(des, descr);
+		// else if (type == SPHERE)
+		// 	parse_sp(des, descr);
+		// else if (type == PLANE)
+		// 	parse_pl(des, descr);
+		if (type == CYLINDER)
 			parse_cy(des, descr);
 		else if (type == ELSE)
-			parse_else(descr);
-		free_dchar(des);
+			err_exit_descr(descr, des);
+		free_dcharp(des);
 	}
 }
 
@@ -54,17 +53,4 @@ static enum e_des_type	des_type(char *parse)
 		return (CYLINDER);
 	else
 		return (ELSE);
-}
-
-static void parse_cy(char **input, t_descr *descr)
-{
-    int i;
-    
-}
-
-static void parse_else(char **input, t_descr *descr)
-{
-    free_descr(descr);
-    free_dchar(input);
-	err_exit("invalid scene description", 0);
 }

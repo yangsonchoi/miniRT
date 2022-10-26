@@ -1,9 +1,9 @@
 NAME		= miniRT
 
-CC			= cc
+CC			= cc -g
 CFLAGS		= -Wall -Werror -Wextra
-LDFLAGS		= -lmlx -lm -L$(LIBFT_DIR) -L$(MLX_DIR)
-INCLUDES	= -I$(HDRS_DIR) -I$(LIBFT_DIR) -I$(MLX_HDRS)
+LDFLAGS		=  -lm -lft -L$(LIBFT_DIR)
+INCLUDES	= -I$(HDRS_DIR) -I$(LIBFT_DIR)
 
 RM 			= rm
 RMFLAGS		= -rf
@@ -17,6 +17,7 @@ LIBFT_DIR	= ./libft/
 
 HDRS_LIST	= minirt.h	\
 			  parse.h	\
+			  vector.h	\
 			  utils.h
 
 HDRS_DIR	= ./include/
@@ -30,8 +31,13 @@ U_DIR		= utils/
 SRCS_LIST	= minirt.c						\
 			  $(P_DIR)parse.c				\
 			  $(P_DIR)parse_description.c	\
+			  $(P_DIR)parse_convert.c		\
+			  $(P_DIR)parse_type_cylinder.c	\
+			  $(V_DIR)vector_convert.c		\
 			  $(U_DIR)error.c				\
-			  $(U_DIR)get_next_line.c
+			  $(U_DIR)free.c				\
+			  $(U_DIR)get_next_line.c		\
+			  $(U_DIR)check.c
 
 SRCS		= $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
@@ -46,9 +52,8 @@ $(NAME) : $(LIBFT) $(OBJS_DIR) $(OBJS)
 
 $(OBJS_DIR) :
 	mkdir -p $(OBJS_DIR)
+	mkdir -p $(OBJS_DIR)$(P_DIR)
 	mkdir -p $(OBJS_DIR)$(V_DIR)
-	mkdir -p $(OBJS_DIR)$(E_DIR)
-	mkdir -p $(OBJS_DIR)$(B_DIR)
 	mkdir -p $(OBJS_DIR)$(U_DIR)
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c $(HDRS)
