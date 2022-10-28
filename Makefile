@@ -2,8 +2,8 @@ NAME		= miniRT
 
 CC			= cc -g
 CFLAGS		= -Wall -Werror -Wextra
-LDFLAGS		=  -lm -lft -L$(LIBFT_DIR)
-INCLUDES	= -I$(HDRS_DIR) -I$(LIBFT_DIR)
+LDFLAGS		=  -lm -lft -lmlx -L$(LIBFT_DIR) -L$(MLX_DIR)
+INCLUDES	= -I$(HDRS_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 RM 			= rm
 RMFLAGS		= -rf
@@ -11,13 +11,14 @@ RMFLAGS		= -rf
 LIBFT		= $(LIBFT_DIR)libft.a
 LIBFT_DIR	= ./libft/
 
-# MLX			= $(MLX_DIR)libmlx.dylib
-# MLX_DIR		= ./minilibx/
-# MLX_HDRS	= $(minilibx)/ 
+MLX			= $(MLX_DIR)libmlx.dylib
+MLX_DIR		= ./minilibx/
+MLX_HDRS	= $(minilibx)/ 
 
 HDRS_LIST	= minirt.h	\
 			  parse.h	\
 			  vector.h	\
+			  draw.h	\
 			  utils.h
 
 HDRS_DIR	= ./include/
@@ -26,6 +27,7 @@ HDRS		= $(addprefix $(HDRS_DIR), $(HDRS_LIST))
 SRCS_DIR	= ./source/
 P_DIR		= parse/
 V_DIR		= vector/
+D_DIR		= draw/
 U_DIR		= utils/
 
 SRCS_LIST	= minirt.c							\
@@ -36,7 +38,9 @@ SRCS_LIST	= minirt.c							\
 			  $(P_DIR)parse_type_sphere.c		\
 			  $(P_DIR)parse_type_plane.c		\
 			  $(P_DIR)parse_type_cylinder.c		\
-			  $(V_DIR)vector_convert.c			\
+			  $(V_DIR)vector_cal1.c				\
+			  $(V_DIR)vector_cal2.c				\
+			  $(D_DIR)draw.c					\
 			  $(U_DIR)error.c					\
 			  $(U_DIR)free.c					\
 			  $(U_DIR)get_next_line.c			\
@@ -50,13 +54,14 @@ OBJS	= $(addprefix $(OBJS_DIR), $(OBJS_LIST))
 
 all : $(NAME)
 
-$(NAME) : $(LIBFT) $(OBJS_DIR) $(OBJS)
+$(NAME) : $(LIBFT) $(MLX) $(OBJS_DIR) $(OBJS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
 
 $(OBJS_DIR) :
 	mkdir -p $(OBJS_DIR)
 	mkdir -p $(OBJS_DIR)$(P_DIR)
 	mkdir -p $(OBJS_DIR)$(V_DIR)
+	mkdir -p $(OBJS_DIR)$(D_DIR)
 	mkdir -p $(OBJS_DIR)$(U_DIR)
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c $(HDRS)
@@ -67,10 +72,13 @@ $(LIBFT) :
 
 $(MLX) :
 	$(MAKE) -C $(MLX_DIR)
+	cp $(MLX) .
 
 clean :
 	$(RM) $(RMFLAGS) $(OBJS_DIR) $(OBJS)
 	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(MLX_DIR) clean
+
 fclean : clean
 	$(RM) $(RMFLAGS) $(LIBFT)
 	$(RM) $(RMFLAGS) $(NAME)

@@ -91,7 +91,7 @@ typedef struct s_img
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
-	int		bytes_per_line;
+	int		size_len;
 	int		endian;
 }	t_img;
 

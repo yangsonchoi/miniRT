@@ -2,6 +2,18 @@
 
 #include <math.h>
 
+double	vec_dot(t_vec3 a, t_vec3 b)
+{
+	return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z));
+}
+
+void	vec_cross(t_vec3 *dest, t_vec3 a, t_vec3 b)
+{
+	dest->x = (a.y * b.z) - (a.z * b.y);
+	dest->y = (a.z * b.x) - (a.x * b.z);
+	dest->z = (a.x * b.y) - (a.y * b.x);
+}
+
 double	vec_convert_unit(t_vec3 input, t_vec3 *dest)
 {
 	double	d;

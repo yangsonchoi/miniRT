@@ -2,11 +2,17 @@
 #include "utils.h"
 #include "parse.h"
 #include "libft.h"
+#include "mlx.h"
+#include "draw.h"
 #include <unistd.h>
+
+#define ESC_KEY 53
 
 #include <stdio.h> // test
 
 static void	initial_variables(t_vars *vars, t_img *img, t_descr *descr);
+static void	initial_mlx(t_vars *vars, t_img *img);
+static int	terminate(int key_input, t_vars *vars);
 
 int	main(int argc, char **argv)
 {
@@ -28,7 +34,7 @@ int	main(int argc, char **argv)
 		printf("camera count : %d\n\n", descr.cnt.c_cnt);
 		printf("position x: %f, y: %f, z: %f, d: %f\n", descr.c.p.x, descr.c.p.y, descr.c.p.z, descr.c.d);
 		printf("orientation x: %f, y: %f, z: %f\n", descr.c.o.x, descr.c.o.y, descr.c.o.z);
-		printf("brightness: %d\n\n", descr.c.fov);
+		printf("FOV: %d\n\n", descr.c.fov);
 	}	
 	{
 		printf("light count : %d\n\n", descr.cnt.l_cnt);
@@ -78,9 +84,12 @@ int	main(int argc, char **argv)
 	}
 	if (descr.cnt.al_cnt != 1 || descr.cnt.c_cnt != 1 || descr.cnt.l_cnt != 1)
 		err_exit_descr(&descr, NULL);
-	
-
-	
+	initial_mlx(&vars, &img);
+	draw_img(&img, &descr);
+	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
+	mlx_destroy_image(vars.mlx, img.img);
+	mlx_key_hook(vars.win, terminate, &vars);
+	mlx_loop(vars.mlx);	
 	free_description(&descr);
 	printf("exit\n");
 }
@@ -90,4 +99,23 @@ static void	initial_variables(t_vars *vars, t_img *img, t_descr *descr)
 	ft_memset(vars, 0, sizeof(t_vars));
 	ft_memset(img, 0, sizeof(t_img));
 	ft_memset(descr, 0, sizeof(t_descr));
+}
+
+static void	initial_mlx(t_vars *vars, t_img *img)
+{
+ 	vars->mlx = mlx_init();
+	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT,"Raytracer");
+	img->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
+	img->addr = mlx_get_data_addr(img->img, \
+				&img->bits_per_pixel, &img->size_len, &img->endian);
+}
+
+static int	terminate(int key_input, t_vars *vars)
+{
+	if (key_input == ESC_KEY)
+	{
+		mlx_destroy_window(vars->mlx, vars->win);
+		exit(EXIT_SUCCESS);
+	}
+	return (0);
 }
