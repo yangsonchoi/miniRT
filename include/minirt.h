@@ -34,7 +34,9 @@ typedef struct s_camera
 typedef struct s_light
 {
 	t_vec3	p;
+	double	d;
 	double	b;
+	t_color	c;
 }	t_light;
 
 typedef struct s_sphere

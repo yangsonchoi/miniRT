@@ -44,6 +44,7 @@ static t_cylinder	*add_cylinder(t_descr *descr)
 	if (descr->cy != NULL)
 		free(descr->cy);
 	descr->cy = new_list;
+	descr->cnt.cy_cnt++;
 	new = malloc(sizeof(t_cylinder));
 	if (new == NULL)
 		err_exit("add_cylinder", errno);

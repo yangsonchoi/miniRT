@@ -12,7 +12,8 @@ enum    e_des_type
     SPHERE,
     PLANE,
     CYLINDER,
-    ELSE,
+    EMPTY,
+    ERROR,
 };
 
 /*
@@ -31,6 +32,23 @@ void	parse_description(char *input, t_descr *descr);
 double	convert_double(char *input);
 bool	convert_vec3(char *input, t_vec3 *vec, double *len, bool check);
 bool	convert_rgb(char *input, t_color *dest);
+
+/*
+** parse_type_lights_cam.c
+*/
+void	parse_al(char **input, t_descr *descr);
+void	parse_c(char **input, t_descr *descr);
+void	parse_l(char **input, t_descr *descr);
+
+/*
+** parse_type_sphere.c
+*/
+void parse_sp(char **input, t_descr *descr);
+
+/*
+** parse_type_plane.c
+*/
+void parse_pl(char **input, t_descr *descr);
 
 /*
 ** parse_type_cylinder.c

@@ -14,12 +14,16 @@ double	convert_double(char *input)
 
 	front = ft_atoi(input);
 	temp = ft_strchr(input, '.');
-	len = ft_strlen(&temp[1]);
-	back = ft_atoi(&temp[1]);
-	while (len > 0)
+	back = 0.0;
+	if (temp != NULL)
 	{
-		back /= 10;
-		len--;
+		len = ft_strlen(&temp[1]);
+		back = ft_atoi(&temp[1]);
+		while (len > 0)
+		{
+			back /= 10;
+			len--;
+		}
 	}
 	if (front < 0)
 		return (front - back);

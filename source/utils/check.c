@@ -40,13 +40,16 @@ bool	check_syntax_dbl(char *input)
 	}
 	while (ft_isdigit(input[i + z]) == 1)
 		i++;
-	if (i == 0 || input[i + z] != '.')
+	if (i == 0 || (input[i + z] == '.' || input [i + z] == 0) == false)
 		return (false);
-	j = 1;
-	while (ft_isdigit(input[i + j + z]) == 1)
-		j++;
-	if (j == 1 || input[i + j + z] != 0)
-		return (false);
+	if (input[i + z] == '.')
+	{
+		j = 1;
+		while (ft_isdigit(input[i + j + z]) == 1)
+			j++;
+		if (j == 1 || input[i + j + z] != 0)
+			return (false);
+	}
 	return (true);
 }
 

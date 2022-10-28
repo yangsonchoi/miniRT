@@ -28,7 +28,9 @@ void	err_exit(char *str, int input)
 
 void	err_exit_descr(t_descr *descr, char **input)
 {
-	free_description(descr);
-	free_dcharp(input);
+	if (input != NULL)
+		free_description(descr);
+	if (input != NULL)
+		free_dcharp(input);
 	err_exit("invalid scene description", 0);
 }

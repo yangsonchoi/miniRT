@@ -7,10 +7,13 @@
 #include <fcntl.h>
 #include <stdbool.h>
 
+#include <stdio.h> // test
+
 void	parse_scene(t_descr *descr, char *file_name)
 {
 	int		fd;
 	char	*temp;
+	char	*trim;
 
 	if (ft_strchr(file_name, '.') &&
 		ft_strncmp(ft_strchr(file_name, '.'), ".rt", ft_strlen(ft_strchr(file_name, '.'))))
@@ -23,13 +26,11 @@ void	parse_scene(t_descr *descr, char *file_name)
 		temp = get_next_line(fd);
 		if (temp == NULL)
 			break ;
-		parse_description(temp, descr);
+		trim = ft_strtrim(temp, "\n");
 		free(temp);
+		printf("gnl: %s\n", trim);
+		parse_description(trim, descr);
+		free(trim);
 	}
-	// if (check_discription(descr) == false)
-	// {
-	// 	free_description(descr);
-	// 	err_exit("invalid scene description", 0);
-	// }
 	close (fd);
 }

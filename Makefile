@@ -28,15 +28,18 @@ P_DIR		= parse/
 V_DIR		= vector/
 U_DIR		= utils/
 
-SRCS_LIST	= minirt.c						\
-			  $(P_DIR)parse.c				\
-			  $(P_DIR)parse_description.c	\
-			  $(P_DIR)parse_convert.c		\
-			  $(P_DIR)parse_type_cylinder.c	\
-			  $(V_DIR)vector_convert.c		\
-			  $(U_DIR)error.c				\
-			  $(U_DIR)free.c				\
-			  $(U_DIR)get_next_line.c		\
+SRCS_LIST	= minirt.c							\
+			  $(P_DIR)parse.c					\
+			  $(P_DIR)parse_description.c		\
+			  $(P_DIR)parse_convert.c			\
+			  $(P_DIR)parse_type_lights_cam.c	\
+			  $(P_DIR)parse_type_sphere.c		\
+			  $(P_DIR)parse_type_plane.c		\
+			  $(P_DIR)parse_type_cylinder.c		\
+			  $(V_DIR)vector_convert.c			\
+			  $(U_DIR)error.c					\
+			  $(U_DIR)free.c					\
+			  $(U_DIR)get_next_line.c			\
 			  $(U_DIR)check.c
 
 SRCS		= $(addprefix $(SRCS_DIR), $(SRCS_LIST))
