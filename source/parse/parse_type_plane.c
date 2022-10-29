@@ -16,7 +16,7 @@ void parse_pl(char **input, t_descr *descr)
 	new = add_plane(descr);
 	if (!check_syntax_vec(input[1]) || !check_syntax_vec(input[2]) || !check_syntax_rgb(input[3]))
 		err_exit_descr(descr, input);
-	convert_vec3(input[1], &new->p, &new->d, false);
+	convert_vec3(input[1], &new->p, NULL, false);
 	if (convert_vec3(input[2], &new->o, NULL, true) == false)
 		err_exit_descr(descr, input);
 	if (convert_rgb(input[3], &(new->c)) == false)

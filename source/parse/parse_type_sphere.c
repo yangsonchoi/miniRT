@@ -16,7 +16,7 @@ void parse_sp(char **input, t_descr *descr)
 	new = add_sphere(descr);
 	if (!check_syntax_vec(input[1]) || !check_syntax_dbl(input[2]) || !check_syntax_rgb(input[3]))
 		err_exit_descr(descr, input);
-	convert_vec3(input[1], &new->p, &new->d, false);
+	convert_vec3(input[1], &new->p, NULL, false);
 	new->r = convert_double(input[2]);
 	if (convert_rgb(input[3], &(new->c)) == false)
 		err_exit_descr(descr, input);

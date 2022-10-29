@@ -51,7 +51,7 @@ bool	convert_vec3(char *input, t_vec3 *vec, double *len, bool check)
 	if (len != NULL)
 		*len = vec_convert_unit(temp_vec, vec);
 	else
-		vec_convert_unit(temp_vec, vec);
+		*vec = temp_vec;
 	return (true);
 }
 

@@ -26,7 +26,6 @@ typedef struct s_ambient
 typedef struct s_camera
 {
 	t_vec3	p;
-	double	d;
 	t_vec3	o;
 	int		fov;
 }	t_camera;
@@ -34,7 +33,6 @@ typedef struct s_camera
 typedef struct s_light
 {
 	t_vec3	p;
-	double	d;
 	double	b;
 	t_color	c;
 }	t_light;
@@ -42,7 +40,6 @@ typedef struct s_light
 typedef struct s_sphere
 {
 	t_vec3	p;
-	double	d;
 	double	r;
 	t_color	c;
 }	t_sphere;
@@ -50,7 +47,6 @@ typedef struct s_sphere
 typedef struct s_plane
 {
 	t_vec3	p;
-	double	d;
 	t_vec3	o;
 	t_color	c;
 }	t_plane;
@@ -58,7 +54,6 @@ typedef struct s_plane
 typedef struct s_cylinder
 {
 	t_vec3	p;
-	double	d;
 	t_vec3	o;
 	double	r;
 	double	h;

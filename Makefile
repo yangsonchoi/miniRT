@@ -40,6 +40,7 @@ SRCS_LIST	= minirt.c							\
 			  $(P_DIR)parse_type_cylinder.c		\
 			  $(V_DIR)vector_cal1.c				\
 			  $(V_DIR)vector_cal2.c				\
+			  $(V_DIR)ray_cal.c					\
 			  $(D_DIR)draw.c					\
 			  $(U_DIR)error.c					\
 			  $(U_DIR)free.c					\
@@ -78,7 +79,6 @@ clean :
 	$(RM) $(RMFLAGS) $(OBJS_DIR) $(OBJS)
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(MLX_DIR) clean
-
 fclean : clean
 	$(RM) $(RMFLAGS) $(LIBFT)
 	$(RM) $(RMFLAGS) $(NAME)

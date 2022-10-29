@@ -25,7 +25,7 @@ void	parse_c(char **input, t_descr *descr)
 		err_exit_descr(descr, input);		
 	if (!check_syntax_vec(input[1]) || !check_syntax_vec(input[2]))
 		err_exit_descr(descr, input);
-	convert_vec3(input[1], &(descr->c.p), &(descr->c.d), false);
+	convert_vec3(input[1], &(descr->c.p), NULL, false);
 	if (convert_vec3(input[2], &(descr->c.o), NULL, true) == false)
 		err_exit_descr(descr, input);
 	i = 0;
@@ -46,7 +46,7 @@ void	parse_l(char **input, t_descr *descr)
 		err_exit_descr(descr, input);		
 	if (!check_syntax_vec(input[1]) || !check_syntax_dbl(input[2]) || !check_syntax_rgb(input[3]))
 		err_exit_descr(descr, input);
-	convert_vec3(input[1], &(descr->l.p), &(descr->l.d), false);
+	convert_vec3(input[1], &(descr->l.p), NULL, false);
 	descr->l.b = convert_double(input[2]);
 	if (descr->l.b < 0 || descr->l.b > 1)
 		err_exit_descr(descr, input);

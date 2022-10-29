@@ -33,3 +33,22 @@ double	vec_convert_unit(t_vec3 input, t_vec3 *dest)
 	}
 	return (d);
 }
+
+t_vec3	vec_set(double x, double y, double z)
+{
+	t_vec3	ret;
+	ret.x = x;
+	ret.y = y;
+	ret.z = z;
+	return (ret);
+}
+
+t_color	color_set(double x, double y, double z)
+{
+	t_color	ret;
+	ret.trgb[3] = 0;
+	ret.trgb[2] = x;
+	ret.trgb[1] = y;
+	ret.trgb[0] = z;
+	return (ret);
+}

@@ -17,7 +17,7 @@ void parse_cy(char **input, t_descr *descr)
 	if (!check_syntax_vec(input[1]) || !check_syntax_vec(input[2])
 		|| !check_syntax_dbl(input[3]) || !check_syntax_dbl(input[4]) || !check_syntax_rgb(input[5]))
 		err_exit_descr(descr, input);
-	convert_vec3(input[1], &new->p, &new->d, false);
+	convert_vec3(input[1], &new->p, NULL, false);
 	if (convert_vec3(input[2], &new->o, NULL, true) == false)
 		err_exit_descr(descr, input);
 	new->r = convert_double(input[3]);
