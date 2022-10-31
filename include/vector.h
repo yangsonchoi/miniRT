@@ -26,5 +26,6 @@ t_color	color_set(double x, double y, double z);
 */
 void	ray_at(t_vec3 *dest, t_ray a, double b);
 void	set_face(t_ray ray, t_rec *rec);
+void	max_color(t_vec3 *dest, t_vec3 color);
 
 #endif

@@ -31,7 +31,7 @@ void	parse_description(char *input, t_descr *descr);
 */
 double	convert_double(char *input);
 bool	convert_vec3(char *input, t_vec3 *vec, double *len, bool check);
-bool	convert_rgb(char *input, t_color *dest);
+bool	convert_rgb(char *input, t_vec3 *dest);
 
 /*
 ** parse_type_lights_cam.c

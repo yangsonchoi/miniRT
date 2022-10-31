@@ -27,8 +27,7 @@ int	main(int argc, char **argv)
 	int i;
 	{
 		printf("ambient count : %d\n\n", descr.cnt.al_cnt);
-		printf("brightness: %f\n", descr.al.r);
-		printf("color R: %d G: %d B: %d\n\n", descr.al.c.trgb[2], descr.al.c.trgb[1], descr.al.c.trgb[0]);
+		printf("color R: %f G: %f B: %f\n\n", descr.al.cr.x, descr.al.cr.y, descr.al.cr.z);
 	}	
 	{
 		printf("camera count : %d\n\n", descr.cnt.c_cnt);
@@ -39,8 +38,7 @@ int	main(int argc, char **argv)
 	{
 		printf("light count : %d\n\n", descr.cnt.l_cnt);
 		printf("position x: %f, y: %f, z: %f\n", descr.l.p.x, descr.l.p.y, descr.l.p.z);
-		printf("brightness: %f\n", descr.l.b);
-		printf("color R: %d G: %d B: %d\n\n", descr.l.c.trgb[2], descr.l.c.trgb[1], descr.l.c.trgb[0]);
+		printf("color R: %f G: %f B: %f\n\n", descr.l.cb.x, descr.l.cb.y, descr.l.cb.z);
 	}		
 	i = 0;
 	if (descr.sp != NULL)
@@ -51,7 +49,7 @@ int	main(int argc, char **argv)
 			printf("sphere #%d\n", i);
 			printf("position x: %f, y: %f, z: %f\n", (descr.sp)[i]->p.x, (descr.sp)[i]->p.y, (descr.sp)[i]->p.z);
 			printf("radius: %f\n", (descr.sp)[i]->r);
-			printf("color R: %d G: %d B: %d\n\n", (descr.sp)[i]->c.trgb[2], (descr.sp)[i]->c.trgb[1], (descr.sp)[i]->c.trgb[0]);
+			printf("color R: %f G: %f B: %f\n\n", (descr.sp)[i]->c.x, (descr.sp)[i]->c.y, (descr.sp)[i]->c.z);
 			i++;
 		}
 	}	
@@ -64,7 +62,7 @@ int	main(int argc, char **argv)
 			printf("plane #%d\n", i);
 			printf("position x: %f, y: %f, z: %f\n", (descr.pl)[i]->p.x, (descr.pl)[i]->p.y, (descr.pl)[i]->p.z);
 			printf("orientation: x: %f, y: %f, z: %f\n", (descr.pl)[i]->o.x, (descr.pl)[i]->o.y, (descr.pl)[i]->o.z);
-			printf("color R: %d G: %d B: %d\n\n", (descr.pl)[i]->c.trgb[2], (descr.pl)[i]->c.trgb[1], (descr.pl)[i]->c.trgb[0]);
+			printf("color R: %f G: %f B: %f\n\n", (descr.pl)[i]->c.x, (descr.pl)[i]->c.y, (descr.pl)[i]->c.z);
 			i++;
 		}
 	}
@@ -78,7 +76,7 @@ int	main(int argc, char **argv)
 			printf("position x: %f, y: %f, z: %f\n", (descr.cy)[i]->p.x, (descr.cy)[i]->p.y, (descr.cy)[i]->p.z);
 			printf("orientation: x: %f, y: %f, z: %f\n", (descr.cy)[i]->o.x, (descr.cy)[i]->o.y, (descr.cy)[i]->o.z);
 			printf("radius: %f, height, %f\n", (descr.cy)[i]->r, (descr.cy)[i]->h);
-			printf("color R: %d G: %d B: %d\n\n", (descr.cy)[i]->c.trgb[2], (descr.cy)[i]->c.trgb[1], (descr.cy)[i]->c.trgb[0]);
+			printf("color R: %f G: %f B: %f\n\n", (descr.cy)[i]->c.x, (descr.cy)[i]->c.y, (descr.cy)[i]->c.z);
 			i++;
 		}
 	}

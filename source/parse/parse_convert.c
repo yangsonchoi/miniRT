@@ -55,7 +55,7 @@ bool	convert_vec3(char *input, t_vec3 *vec, double *len, bool check)
 	return (true);
 }
 
-bool	convert_rgb(char *input, t_color *dest)
+bool	convert_rgb(char *input, t_vec3 *dest)
 {
 	char	*temp;
 	int		temp_int;
@@ -63,16 +63,16 @@ bool	convert_rgb(char *input, t_color *dest)
 	temp_int = atoi(input);
 	if (temp_int < 0 || temp_int > 255)
 		return (false);
-	(dest->trgb)[2] = (unsigned char)temp_int;
+	dest->x = temp_int;
 	temp = ft_strchr(input, ',');
 	temp_int = atoi(&temp[1]);
 	if (temp_int < 0 || temp_int > 255)
 		return (false);
-	(dest->trgb)[1] = (unsigned char)temp_int;
+	dest->y = temp_int;
 	temp = ft_strchr(&temp[1], ',');
-		temp_int = atoi(&temp[1]);
+	temp_int = atoi(&temp[1]);
 	if (temp_int < 0 || temp_int > 255)
 		return (false);
-	(dest->trgb)[0] = (unsigned char)temp_int;
+	dest->z = temp_int;
 	return (true);
 }

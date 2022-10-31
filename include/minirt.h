@@ -19,8 +19,7 @@ typedef union u_color
 
 typedef struct s_ambient
 {
-	double	r;
-	t_color	c;
+	t_vec3	cr;
 }	t_ambient;
 
 typedef struct s_camera
@@ -33,22 +32,21 @@ typedef struct s_camera
 typedef struct s_light
 {
 	t_vec3	p;
-	double	b;
-	t_color	c;
+	t_vec3	cb;
 }	t_light;
 
 typedef struct s_sphere
 {
 	t_vec3	p;
 	double	r;
-	t_color	c;
+	t_vec3	c;
 }	t_sphere;
 
 typedef struct s_plane
 {
 	t_vec3	p;
 	t_vec3	o;
-	t_color	c;
+	t_vec3	c;
 }	t_plane;
 
 typedef struct s_cylinder
@@ -57,7 +55,7 @@ typedef struct s_cylinder
 	t_vec3	o;
 	double	r;
 	double	h;
-	t_color	c;
+	t_vec3	c;
 }	t_cylinder;
 
 typedef struct s_cnt

@@ -2,18 +2,23 @@
 #include "minirt.h"
 #include "utils.h"
 #include "libft.h"
+#include "vector.h"
 
 void	parse_al(char **input, t_descr *descr)
 {
+	t_vec3	c;
+	double	r;
+	
 	if(descr->cnt.al_cnt != 0 || check_dcharp_num(3, input) == false)
 		err_exit_descr(descr, input);	
 	if (!check_syntax_dbl(input[1]) || !check_syntax_rgb(input[2]))
 		err_exit_descr(descr, input);
-	descr->al.r = convert_double(input[1]);
-	if (descr->al.r < 0 || descr->al.r > 1)
+	r = convert_double(input[1]);
+	if (r < 0 || r > 1)
 		err_exit_descr(descr, input);
-	if (convert_rgb(input[2], &(descr->al.c)) == false)
+	if (convert_rgb(input[2], &c) == false)
 		err_exit_descr(descr, input);
+	vec_mul_db(&descr->al.cr, c, r / 255);
 	descr->cnt.al_cnt = 1;
 }
 
@@ -42,15 +47,19 @@ void	parse_c(char **input, t_descr *descr)
 
 void	parse_l(char **input, t_descr *descr)
 {
+	t_vec3	raw_color;
+	double	b;
+
 	if(descr->cnt.l_cnt != 0 || check_dcharp_num(4, input) == false)
 		err_exit_descr(descr, input);		
 	if (!check_syntax_vec(input[1]) || !check_syntax_dbl(input[2]) || !check_syntax_rgb(input[3]))
 		err_exit_descr(descr, input);
 	convert_vec3(input[1], &(descr->l.p), NULL, false);
-	descr->l.b = convert_double(input[2]);
-	if (descr->l.b < 0 || descr->l.b > 1)
+	b = convert_double(input[2]);
+	if (b < 0 || b > 1)
 		err_exit_descr(descr, input);
-	if (convert_rgb(input[3], &(descr->l.c)) == false)
+	if (convert_rgb(input[3], &raw_color) == false)
 		err_exit_descr(descr, input);
+	vec_mul_db(&descr->l.cb, raw_color, b / 255);
 	descr->cnt.l_cnt = 1;
 }

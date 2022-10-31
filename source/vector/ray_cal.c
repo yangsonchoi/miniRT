@@ -18,3 +18,19 @@ void	set_face(t_ray ray, t_rec *rec)
 	if (rec->face == false)
 		vec_mul_db(&rec->norm, rec->norm, -1);
 }
+
+void	max_color(t_vec3 *dest, t_vec3 color)
+{
+	if (color.x > 255.0)
+		dest->x = 255;
+	else
+		dest->x = color.x;
+	if (color.y > 255.0)
+		dest->y = 255;
+	else
+		dest->y = color.y;
+	if (color.z > 255.0)
+		dest->z = 255;
+	else
+		dest->z = color.z;
+}
