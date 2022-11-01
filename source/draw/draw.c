@@ -40,21 +40,21 @@ static void	set_viewport(t_draw *draw, t_descr *descr)
 {
 	double	fov_rad;
 	t_vec3	temp;
+	t_vec3	u;
+	t_vec3	v;
 
 	fov_rad = M_PI * descr->c.fov / 2 / 180;
-	draw->cam_h.x = tan(fov_rad) * 2;
-	draw->cam_h.y = 0;
-	draw->cam_h.z = 0;
-	draw->cam_v.x = 0;
-	draw->cam_v.y = tan(fov_rad) * 2 * HEIGHT / WIDTH;
-	draw->cam_v.z = 0;
+	vec_cross(&temp, vec_set(0, 1, 0), descr->c.o);
+	vec_convert_unit(temp, &u);
+	vec_mul_db(&draw->cam_h, u, tan(fov_rad) * 2);
+	vec_cross(&v, descr->c.o, u);
+	vec_mul_db(&draw->cam_v, v, tan(fov_rad) * 2 * HEIGHT / WIDTH);
+	draw->llc = descr->c.p;
 	vec_div_db(&temp, draw->cam_h, 2);
 	vec_minus(&draw->llc, descr->c.p, temp);
 	vec_div_db(&temp, draw->cam_v, 2);
 	vec_minus(&draw->llc, draw->llc, temp);
-	temp.x = 0;
-	temp.y = 0;
-	temp.z = 1;
+	vec_convert_unit(descr->c.o, &temp);
 	vec_minus(&draw->llc, draw->llc, temp);
 }
 

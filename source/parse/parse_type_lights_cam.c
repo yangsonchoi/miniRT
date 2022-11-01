@@ -33,6 +33,7 @@ void	parse_c(char **input, t_descr *descr)
 	convert_vec3(input[1], &(descr->c.p), NULL, false);
 	if (convert_vec3(input[2], &(descr->c.o), NULL, true) == false)
 		err_exit_descr(descr, input);
+	vec_convert_unit(descr->c.o, &descr->c.o);
 	i = 0;
 	while (input[3][i] != 0)
 	{
