@@ -7,20 +7,20 @@
 #include <stdbool.h>
 
 static double set_shadow_ray(t_ray *ray, t_rec rec, t_descr *descr);
-static bool	hit_sphere_shadow(t_ray ray, t_sphere *sp, double t_min);
+static bool	hit_sphere_shadow(t_ray ray, t_sphere *sp, double t_max);
 
 bool	hit_object_shadow(t_rec rec, t_descr *descr)
 {
 	int	i;
 	t_ray	ray;
-	double	t_min;
+	double	t_max;
 
 	i = 0;
-	t_min = set_shadow_ray(&ray, rec, descr);
+	t_max = set_shadow_ray(&ray, rec, descr);
 	if (descr->sp != NULL)
 	{
 		while (descr->sp[i] != NULL)
-			if(hit_sphere_shadow(ray, descr->sp[i++], t_min) == true)
+			if(hit_sphere_shadow(ray, descr->sp[i++], t_max) == true)
 				return (true);
 	}
 	// if (descr->sp != NULL)
@@ -49,7 +49,7 @@ static double set_shadow_ray(t_ray *ray, t_rec rec, t_descr *descr)
 	return(light_len);
 }
 
-static bool	hit_sphere_shadow(t_ray ray, t_sphere *sp, double t_min) 
+static bool	hit_sphere_shadow(t_ray ray, t_sphere *sp, double t_max) 
 {
 	t_vec3	oc;
 	double	discriminant;
@@ -64,10 +64,10 @@ static bool	hit_sphere_shadow(t_ray ray, t_sphere *sp, double t_min)
 	if (discriminant < 0)
 		return (false);
 	root = ((half_b * -1) - sqrt(discriminant)) / a;
-	if (root < t_min || root > T_MAX)
+	if (root < T_MIN || root > t_max)
 	{
 		root = ((half_b * -1) + sqrt(discriminant)) / a;
-		if (root < t_min|| root > T_MAX)
+		if (root < T_MIN|| root > t_max)
 			return (false);
 	}
 	return (true);

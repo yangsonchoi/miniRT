@@ -25,7 +25,7 @@ double	convert_double(char *input)
 			len--;
 		}
 	}
-	if (front < 0)
+	if (input[0] == '-' || front < 0)
 		return (front - back);
 	else
 		return (front + back);

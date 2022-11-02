@@ -149,9 +149,9 @@ void	set_color(t_vec3 obj, t_ray ray, t_rec *rec, t_descr *descr)
 	{
 		if (descr->cnt.l_cnt != 0)
 			vec_plus(&light, light, diffuse_light(ray, rec, descr));
-		if (descr->cnt.al_cnt != 0)
-			vec_plus(&light, light, descr->al.cr);
 	}
+	if (descr->cnt.al_cnt != 0)
+		vec_plus(&light, light, descr->al.cr);
 	vec_mul_vec(&rec->c, obj, light);
 	max_color(&rec->c, rec->c);
 }
