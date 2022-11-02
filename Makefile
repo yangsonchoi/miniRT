@@ -42,6 +42,8 @@ SRCS_LIST	= minirt.c							\
 			  $(V_DIR)vector_cal2.c				\
 			  $(V_DIR)ray_cal.c					\
 			  $(D_DIR)draw.c					\
+			  $(D_DIR)draw_hit.c				\
+			  $(D_DIR)draw_light.c				\
 			  $(D_DIR)draw_shadow.c				\
 			  $(U_DIR)error.c					\
 			  $(U_DIR)free.c					\

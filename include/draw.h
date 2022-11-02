@@ -41,6 +41,16 @@ typedef struct s_rec
 void	draw_img(t_img *img, t_descr *descr);
 
 /*
+** draw_hit.c
+*/
+bool	hit_object(t_ray ray, t_rec *rec, t_descr *descr);
+
+/*
+** draw_light.c
+*/
+void	set_color(t_vec3 obj, t_ray ray, t_rec *rec, t_descr *descr);
+
+/*
 ** draw_shadow.c
 */
 bool	hit_object_shadow(t_rec ray, t_descr *descr);
