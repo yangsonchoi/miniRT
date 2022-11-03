@@ -8,6 +8,7 @@
 
 static double set_shadow_ray(t_ray *ray, t_rec rec, t_descr *descr);
 static bool	hit_sphere_shadow(t_ray ray, t_sphere *sp, double t_max);
+static bool	hit_plane_shadow(t_ray ray, t_plane *pl, double t_max);
 
 bool	hit_object_shadow(t_rec rec, t_descr *descr)
 {
@@ -23,12 +24,13 @@ bool	hit_object_shadow(t_rec rec, t_descr *descr)
 			if(hit_sphere_shadow(ray, descr->sp[i++], t_max) == true)
 				return (true);
 	}
-	// if (descr->sp != NULL)
-	// {
-	// 	while (descr->sp[i] != NULL)
-	// 		if(hit_sphere_shadow(ray, descr->sp[i++], rec, descr) == true)
-	// 			return (true);
-	// }
+	i = 0;
+	if (descr->pl != NULL)
+	{
+		while (descr->pl[i] != NULL)
+			if(hit_plane_shadow(ray, descr->pl[i++], t_max) == true)
+				return (true);
+	}
 	// if (descr->sp != NULL)
 	// {
 	// 	while (descr->sp[i] != NULL)
@@ -64,11 +66,27 @@ static bool	hit_sphere_shadow(t_ray ray, t_sphere *sp, double t_max)
 	if (discriminant < 0)
 		return (false);
 	root = ((half_b * -1) - sqrt(discriminant)) / a;
-	if (root < T_MIN || root > t_max)
+	if (root < MIN || root > t_max)
 	{
 		root = ((half_b * -1) + sqrt(discriminant)) / a;
-		if (root < T_MIN|| root > t_max)
+		if (root < MIN|| root > t_max)
 			return (false);
 	}
+	return (true);
+}
+
+static bool	hit_plane_shadow(t_ray ray, t_plane *pl, double t_max) 
+{
+	double	discriminant;
+	double	d;
+	double	t;
+
+	discriminant = vec_dot(pl->o, ray.dir);
+	if (discriminant < MIN && -discriminant < MIN)
+		return (false);
+	d = vec_dot(pl->o, pl->p);
+	t = (d - vec_dot(pl->o, ray.p)) / discriminant;
+	if (t < MIN || t > t_max)
+			return (false);
 	return (true);
 }

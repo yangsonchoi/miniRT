@@ -5,8 +5,8 @@
 # include <math.h>
 # include <stdbool.h>
 
-# define T_MIN 1e-6
-# define T_MAX INFINITY
+# define MIN 1e-6
+# define MAX INFINITY
 
 typedef	struct s_draw
 {
@@ -28,7 +28,6 @@ typedef struct s_rec
 	t_vec3	p;
 	t_vec3	norm;
 	double	t;
-	double	t_min;
 	double	t_max;
 	t_vec3	c;
 	bool	face;

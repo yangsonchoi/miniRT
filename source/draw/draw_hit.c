@@ -7,6 +7,7 @@
 #include <stdbool.h>
 
 static bool	hit_sphere(t_ray ray, t_sphere *sp, t_rec *rec, t_descr *descr);
+static bool	hit_plane(t_ray ray, t_plane *pl, t_rec *rec, t_descr *descr);
 
 bool	hit_object(t_ray ray, t_rec *rec, t_descr *descr)
 {
@@ -15,11 +16,23 @@ bool	hit_object(t_ray ray, t_rec *rec, t_descr *descr)
 
 	hit = 0;;
 	i = 0;
-	rec->t_max = T_MAX;
+	rec->t_max = MAX;
 	if (descr->sp != NULL)
 	{
 		while (descr->sp[i] != NULL)
 			hit += hit_sphere(ray, descr->sp[i++], rec, descr);
+	}
+	i = 0;
+	if (descr->pl != NULL)
+	{
+		while (descr->pl[i] != NULL)
+			hit += hit_plane(ray, descr->pl[i++], rec, descr);
+	}
+	i = 0;
+	if (descr->cy != NULL)
+	{
+		while (descr->cy[i] != NULL)
+			hit += hit_cylinder(ray, descr->cy[i++], rec, descr);
 	}
 	return (hit);
 }
@@ -39,10 +52,10 @@ static bool	hit_sphere(t_ray ray, t_sphere *sp, t_rec *rec, t_descr *descr)
 	if (discriminant < 0)
 		return (false);
 	root = ((half_b * -1) - sqrt(discriminant)) / a;
-	if (root < T_MIN || root > rec->t_max)
+	if (root < MIN || root > rec->t_max)
 	{
 		root = ((half_b * -1) + sqrt(discriminant)) / a;
-		if (root < T_MIN || root > rec->t_max)
+		if (root < MIN || root > rec->t_max)
 			return (false);
 	}
 	rec->t = root;
@@ -55,3 +68,24 @@ static bool	hit_sphere(t_ray ray, t_sphere *sp, t_rec *rec, t_descr *descr)
 	return (true);
 }
 
+static bool	hit_plane(t_ray ray, t_plane *pl, t_rec *rec, t_descr *descr) 
+{
+	double	discriminant;
+	double	d;
+	double	t;
+
+	discriminant = vec_dot(pl->o, ray.dir);
+	if (discriminant < MIN && -discriminant < MIN)
+		return (false);
+	d = vec_dot(pl->o, pl->p);
+	t = (d - vec_dot(pl->o, ray.p)) / discriminant;
+	if (t < MIN || t > rec->t_max)
+			return (false);
+	rec->t = t;
+	rec->t_max = t;
+	ray_at(&rec->p, ray, t);
+	rec->norm = pl->o;
+	set_face(ray, rec);
+	set_color(pl->c, ray, rec, descr);
+	return (true);
+}

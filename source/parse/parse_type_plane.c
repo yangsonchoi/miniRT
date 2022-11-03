@@ -1,6 +1,7 @@
 #include "parse.h"
 #include "minirt.h"
 #include "utils.h"
+#include "vector.h"
 #include "libft.h"
 #include <stdlib.h>
 #include <errno.h>
@@ -19,6 +20,7 @@ void parse_pl(char **input, t_descr *descr)
 	convert_vec3(input[1], &new->p, NULL, false);
 	if (convert_vec3(input[2], &new->o, NULL, true) == false)
 		err_exit_descr(descr, input);
+	vec_convert_unit(new->o, &new->o);
 	if (convert_rgb(input[3], &(new->c)) == false)
 		err_exit_descr(descr, input);
 }

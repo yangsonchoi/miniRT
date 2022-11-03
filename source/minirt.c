@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 	{
 		printf("camera count : %d\n\n", descr.cnt.c_cnt);
 		printf("position x: %f, y: %f, z: %f\n", descr.c.p.x, descr.c.p.y, descr.c.p.z);
-		printf("orientation x: %f, y: %f, z: %f\n", descr.c.o.x, descr.c.o.y, descr.c.o.z);
+		printf("orientation x: %f, y: %f, z: %f\n", -descr.c.o.x, -descr.c.o.y, -descr.c.o.z);
 		printf("FOV: %d\n\n", descr.c.fov);
 	}	
 	{
