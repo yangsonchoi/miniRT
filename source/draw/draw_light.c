@@ -34,7 +34,7 @@ static t_vec3	diffuse_light(t_ray ray, t_rec *rec, t_descr *descr)
 	vec_convert_unit(light_dir, &light_dir);
 	kd = fmax(vec_dot(rec->norm, light_dir), 0.0);
 	vec_mul_db(&diff_light, descr->l.cb, kd);
-
+	
 	t_vec3	specular;
 	t_vec3	view_dir;
 	t_vec3	reflect_dir;

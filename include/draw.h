@@ -45,6 +45,11 @@ void	draw_img(t_img *img, t_descr *descr);
 bool	hit_object(t_ray ray, t_rec *rec, t_descr *descr);
 
 /*
+** draw_hit_cylinder.c
+*/
+bool	hit_cylinder(t_ray ray, t_cylinder *cy, t_rec *rec, t_descr *descr);
+
+/*
 ** draw_light.c
 */
 void	set_color(t_vec3 obj, t_ray ray, t_rec *rec, t_descr *descr);
