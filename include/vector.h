@@ -3,6 +3,7 @@
 
 # include "minirt.h"
 # include "draw.h"
+
 /*
 ** vector_cal1.c
 */

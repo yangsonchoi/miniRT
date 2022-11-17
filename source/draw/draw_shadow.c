@@ -31,12 +31,11 @@ bool	hit_object_shadow(t_rec rec, t_descr *descr)
 			if(hit_plane_shadow(ray, descr->pl[i++], t_max) == true)
 				return (true);
 	}
-	// if (descr->sp != NULL)
-	// {
-	// 	while (descr->sp[i] != NULL)
-	// 		if(hit_sphere_shadow(ray, descr->sp[i++], rec, descr) == true)
-	// 			return (true);
-	// }
+	if (descr->cy != NULL)
+	{
+		if (cylinder_shadow(ray, descr, t_max) == true)
+			return (true);
+	}
 	return (false);
 }
 

@@ -6,13 +6,14 @@
 #include "draw.h"
 #include <unistd.h>
 
-#define ESC_KEY 53
+#define ESC_KEY	53
+#define CHANGE	
 
 #include <stdio.h> // test
 
 static void	initial_variables(t_vars *vars, t_img *img, t_descr *descr);
 static void	initial_mlx(t_vars *vars, t_img *img);
-static int	terminate(int key_input, t_vars *vars);
+static int	key_press(int key_input, t_vars *vars, t_descr *descr);
 
 int	main(int argc, char **argv)
 {
@@ -86,8 +87,8 @@ int	main(int argc, char **argv)
 	draw_img(&img, &descr);
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	mlx_destroy_image(vars.mlx, img.img);
-	mlx_key_hook(vars.win, terminate, &vars);
-	mlx_loop(vars.mlx);	
+	mlx_key_hook(vars.win, key_press, &vars);
+	mlx_loop(vars.mlx);
 	free_description(&descr);
 	printf("exit\n");
 }
@@ -108,12 +109,14 @@ static void	initial_mlx(t_vars *vars, t_img *img)
 				&img->bits_per_pixel, &img->size_len, &img->endian);
 }
 
-static int	terminate(int key_input, t_vars *vars)
+static int	key_press(int key_input, t_vars *vars, t_img *img, t_descr *descr)
 {
 	if (key_input == ESC_KEY)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
+		free_description(&descr);
 		exit(EXIT_SUCCESS);
 	}
+	if (key_input == )
 	return (0);
 }

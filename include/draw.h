@@ -57,6 +57,11 @@ void	set_color(t_vec3 obj, t_ray ray, t_rec *rec, t_descr *descr);
 /*
 ** draw_shadow.c
 */
-bool	hit_object_shadow(t_rec ray, t_descr *descr);
+bool	hit_object_shadow(t_rec rec, t_descr *descr);
+
+/*
+** draw_shadow_cylinder.c
+*/
+bool	cylinder_shadow(t_ray ray, t_descr *descr, 	double	t_max);
 
 #endif

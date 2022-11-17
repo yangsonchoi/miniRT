@@ -12,7 +12,7 @@ void	set_color(t_vec3 obj, t_ray ray, t_rec *rec, t_descr *descr)
 {
 	t_vec3	light;
 
-	light = vec_set(0, 0, 0);
+	light = vec_set(0.0, 0.0, 0.0);
 	if (hit_object_shadow(*rec, descr) == false)
 	{
 		if (descr->cnt.l_cnt != 0)

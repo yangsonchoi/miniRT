@@ -19,6 +19,7 @@ HDRS_LIST	= minirt.h	\
 			  parse.h	\
 			  vector.h	\
 			  draw.h	\
+			  control.h	\
 			  utils.h
 
 HDRS_DIR	= ./include/
@@ -28,6 +29,7 @@ SRCS_DIR	= ./source/
 P_DIR		= parse/
 V_DIR		= vector/
 D_DIR		= draw/
+C_DIR		= control/
 U_DIR		= utils/
 
 SRCS_LIST	= minirt.c							\
@@ -46,6 +48,8 @@ SRCS_LIST	= minirt.c							\
 			  $(D_DIR)draw_hit_cylinder.c		\
 			  $(D_DIR)draw_light.c				\
 			  $(D_DIR)draw_shadow.c				\
+			  $(D_DIR)draw_shadow_cylinder.c	\
+			  $(C_DIR)control.c					\
 			  $(U_DIR)error.c					\
 			  $(U_DIR)free.c					\
 			  $(U_DIR)get_next_line.c			\

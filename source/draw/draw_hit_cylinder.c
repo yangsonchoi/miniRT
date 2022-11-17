@@ -19,9 +19,9 @@ bool	hit_cylinder(t_ray ray, t_cylinder *cy, t_rec *rec, t_descr *descr)
 	ret = false;
 	if(hit_cylinder_side(ray, cy, rec, descr) == true)
 		ret = true;
-	if(hit_cy_cap_up(ray, cy, rec, descr))
+	if(hit_cy_cap_up(ray, cy, rec, descr) == true)
 		ret = true;
-	if(hit_cy_cap_down(ray, cy, rec, descr))
+	if(hit_cy_cap_down(ray, cy, rec, descr) == true)
 		ret = true;
 	return (ret);
 }
@@ -43,7 +43,7 @@ static bool	hit_cylinder_side(t_ray ray, t_cylinder *cy, t_rec *rec, t_descr *de
 	vec_plus(&rec->norm, cy->p, rec->norm);
 	vec_minus(&rec->norm, rec->p, rec->norm);
 	vec_convert_unit(rec->norm, &rec->norm);
-	// set_face(ray, rec);
+	set_face(ray, rec);
 	set_color(cy->c, ray, rec, descr);
 	return (true);
 }
