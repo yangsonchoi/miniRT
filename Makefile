@@ -49,7 +49,6 @@ SRCS_LIST	= minirt.c							\
 			  $(D_DIR)draw_light.c				\
 			  $(D_DIR)draw_shadow.c				\
 			  $(D_DIR)draw_shadow_cylinder.c	\
-			  $(C_DIR)control.c					\
 			  $(U_DIR)error.c					\
 			  $(U_DIR)free.c					\
 			  $(U_DIR)get_next_line.c			\
@@ -71,6 +70,7 @@ $(OBJS_DIR) :
 	mkdir -p $(OBJS_DIR)$(P_DIR)
 	mkdir -p $(OBJS_DIR)$(V_DIR)
 	mkdir -p $(OBJS_DIR)$(D_DIR)
+	mkdir -p $(OBJS_DIR)$(C_DIR)
 	mkdir -p $(OBJS_DIR)$(U_DIR)
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c $(HDRS)

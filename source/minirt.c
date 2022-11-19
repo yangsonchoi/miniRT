@@ -4,100 +4,90 @@
 #include "libft.h"
 #include "mlx.h"
 #include "draw.h"
+
 #include <unistd.h>
 
 #define ESC_KEY	53
-#define CHANGE	
+#define CHANGE	8
 
 #include <stdio.h> // test
+#include "vector.h"
 
-static void	initial_variables(t_vars *vars, t_img *img, t_descr *descr);
 static void	initial_mlx(t_vars *vars, t_img *img);
-static int	key_press(int key_input, t_vars *vars, t_descr *descr);
+static void	draw_loop(t_vars *vars, t_img *img, t_descr *descr);
+static int	key_press(int key_input, t_vars *vars);
 
 int	main(int argc, char **argv)
 {
 	t_vars	vars;
-	t_img	img;
-	t_descr	descr;
 
 	if (argc != 2)
 		err_exit(NULL, 22);
-	initial_variables(&vars, &img, &descr);
-	parse_scene(&descr, argv[1]);
+	ft_memset(&vars, 0, sizeof(t_vars));
+	parse_scene(&vars.descr, argv[1]);
 	int i;
 	{
-		printf("ambient count : %d\n\n", descr.cnt.al_cnt);
-		printf("color R: %f G: %f B: %f\n\n", descr.al.cr.x, descr.al.cr.y, descr.al.cr.z);
+		printf("ambient count : %d\n\n", vars.descr.cnt.al_cnt);
+		printf("color R: %f G: %f B: %f\n\n", vars.descr.al.cr.x, vars.descr.al.cr.y, vars.descr.al.cr.z);
 	}	
 	{
-		printf("camera count : %d\n\n", descr.cnt.c_cnt);
-		printf("position x: %f, y: %f, z: %f\n", descr.c.p.x, descr.c.p.y, descr.c.p.z);
-		printf("orientation x: %f, y: %f, z: %f\n", -descr.c.o.x, -descr.c.o.y, -descr.c.o.z);
-		printf("FOV: %d\n\n", descr.c.fov);
+		printf("camera count : %d\n\n", vars.descr.cnt.c_cnt);
+		printf("position x: %f, y: %f, z: %f\n", vars.descr.c.p.x, vars.descr.c.p.y, vars.descr.c.p.z);
+		printf("orientation x: %f, y: %f, z: %f\n", -vars.descr.c.o.x, -vars.descr.c.o.y, -vars.descr.c.o.z);
+		printf("FOV: %d\n\n", vars.descr.c.fov);
 	}	
 	{
-		printf("light count : %d\n\n", descr.cnt.l_cnt);
-		printf("position x: %f, y: %f, z: %f\n", descr.l.p.x, descr.l.p.y, descr.l.p.z);
-		printf("color R: %f G: %f B: %f\n\n", descr.l.cb.x, descr.l.cb.y, descr.l.cb.z);
+		printf("light count : %d\n\n", vars.descr.cnt.l_cnt);
+		printf("position x: %f, y: %f, z: %f\n", vars.descr.l.p.x, vars.descr.l.p.y, vars.descr.l.p.z);
+		printf("color R: %f G: %f B: %f\n\n", vars.descr.l.cb.x, vars.descr.l.cb.y, vars.descr.l.cb.z);
 	}		
 	i = 0;
-	if (descr.sp != NULL)
+	if (vars.descr.sp != NULL)
 	{
-		printf("sphere count : %d\n\n", descr.cnt.sp_cnt);
-		while ((descr.sp)[i] != NULL)
+		printf("sphere count : %d\n\n", vars.descr.cnt.sp_cnt);
+		while ((vars.descr.sp)[i] != NULL)
 		{
 			printf("sphere #%d\n", i);
-			printf("position x: %f, y: %f, z: %f\n", (descr.sp)[i]->p.x, (descr.sp)[i]->p.y, (descr.sp)[i]->p.z);
-			printf("radius: %f\n", (descr.sp)[i]->r);
-			printf("color R: %f G: %f B: %f\n\n", (descr.sp)[i]->c.x, (descr.sp)[i]->c.y, (descr.sp)[i]->c.z);
+			printf("position x: %f, y: %f, z: %f\n", (vars.descr.sp)[i]->p.x, (vars.descr.sp)[i]->p.y, (vars.descr.sp)[i]->p.z);
+			printf("radius: %f\n", (vars.descr.sp)[i]->r);
+			printf("color R: %f G: %f B: %f\n\n", (vars.descr.sp)[i]->c.x, (vars.descr.sp)[i]->c.y, (vars.descr.sp)[i]->c.z);
 			i++;
 		}
 	}	
 	i = 0;
-	if (descr.pl != NULL)
+	if (vars.descr.pl != NULL)
 	{
-		printf("plane count : %d\n\n", descr.cnt.pl_cnt);
-		while ((descr.pl)[i] != NULL)
+		printf("plane count : %d\n\n", vars.descr.cnt.pl_cnt);
+		while ((vars.descr.pl)[i] != NULL)
 		{
 			printf("plane #%d\n", i);
-			printf("position x: %f, y: %f, z: %f\n", (descr.pl)[i]->p.x, (descr.pl)[i]->p.y, (descr.pl)[i]->p.z);
-			printf("orientation: x: %f, y: %f, z: %f\n", (descr.pl)[i]->o.x, (descr.pl)[i]->o.y, (descr.pl)[i]->o.z);
-			printf("color R: %f G: %f B: %f\n\n", (descr.pl)[i]->c.x, (descr.pl)[i]->c.y, (descr.pl)[i]->c.z);
+			printf("position x: %f, y: %f, z: %f\n", (vars.descr.pl)[i]->p.x, (vars.descr.pl)[i]->p.y, (vars.descr.pl)[i]->p.z);
+			printf("orientation: x: %f, y: %f, z: %f\n", (vars.descr.pl)[i]->o.x, (vars.descr.pl)[i]->o.y, (vars.descr.pl)[i]->o.z);
+			printf("color R: %f G: %f B: %f\n\n", (vars.descr.pl)[i]->c.x, (vars.descr.pl)[i]->c.y, (vars.descr.pl)[i]->c.z);
 			i++;
 		}
 	}
 	i = 0;
-	if (descr.cy != NULL)
+	if (vars.descr.cy != NULL)
 	{
-		printf("cylinder count : %d\n\n", descr.cnt.cy_cnt);
-		while ((descr.cy)[i] != NULL)
+		printf("cylinder count : %d\n\n", vars.descr.cnt.cy_cnt);
+		while ((vars.descr.cy)[i] != NULL)
 		{
 			printf("cylider #%d\n", i);
-			printf("position x: %f, y: %f, z: %f\n", (descr.cy)[i]->p.x, (descr.cy)[i]->p.y, (descr.cy)[i]->p.z);
-			printf("orientation: x: %f, y: %f, z: %f\n", (descr.cy)[i]->o.x, (descr.cy)[i]->o.y, (descr.cy)[i]->o.z);
-			printf("radius: %f, height, %f\n", (descr.cy)[i]->r, (descr.cy)[i]->h);
-			printf("color R: %f G: %f B: %f\n\n", (descr.cy)[i]->c.x, (descr.cy)[i]->c.y, (descr.cy)[i]->c.z);
+			printf("position x: %f, y: %f, z: %f\n", (vars.descr.cy)[i]->p.x, (vars.descr.cy)[i]->p.y, (vars.descr.cy)[i]->p.z);
+			printf("orientation: x: %f, y: %f, z: %f\n", (vars.descr.cy)[i]->o.x, (vars.descr.cy)[i]->o.y, (vars.descr.cy)[i]->o.z);
+			printf("radius: %f, height, %f\n", (vars.descr.cy)[i]->r, (vars.descr.cy)[i]->h);
+			printf("color R: %f G: %f B: %f\n\n", (vars.descr.cy)[i]->c.x, (vars.descr.cy)[i]->c.y, (vars.descr.cy)[i]->c.z);
 			i++;
 		}
 	}
-	if (descr.cnt.al_cnt != 1 || descr.cnt.c_cnt != 1 || descr.cnt.l_cnt != 1)
-		err_exit_descr(&descr, NULL);
-	initial_mlx(&vars, &img);
-	draw_img(&img, &descr);
-	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
-	mlx_destroy_image(vars.mlx, img.img);
+	if (vars.descr.cnt.al_cnt != 1 || vars.descr.cnt.c_cnt != 1 || vars.descr.cnt.l_cnt != 1)
+		err_exit_descr(&vars.descr, NULL);
+	initial_mlx(&vars, &vars.img);
+	draw_loop(&vars, &vars.img, &vars.descr);
 	mlx_key_hook(vars.win, key_press, &vars);
 	mlx_loop(vars.mlx);
-	free_description(&descr);
-	printf("exit\n");
-}
-
-static void	initial_variables(t_vars *vars, t_img *img, t_descr *descr)
-{
-	ft_memset(vars, 0, sizeof(t_vars));
-	ft_memset(img, 0, sizeof(t_img));
-	ft_memset(descr, 0, sizeof(t_descr));
+	free_description(&vars.descr);
 }
 
 static void	initial_mlx(t_vars *vars, t_img *img)
@@ -109,14 +99,29 @@ static void	initial_mlx(t_vars *vars, t_img *img)
 				&img->bits_per_pixel, &img->size_len, &img->endian);
 }
 
-static int	key_press(int key_input, t_vars *vars, t_img *img, t_descr *descr)
+static void	draw_loop(t_vars *vars, t_img *img, t_descr *descr)
+{
+	draw_img(img, descr);
+	mlx_put_image_to_window(vars->mlx, vars->win, img->img, 0, 0);
+}
+
+static int	key_press(int key_input, t_vars *vars)
 {
 	if (key_input == ESC_KEY)
 	{
+		mlx_destroy_image(vars->mlx, vars->img.img);
 		mlx_destroy_window(vars->mlx, vars->win);
-		free_description(&descr);
+		free_description(&vars->descr);
 		exit(EXIT_SUCCESS);
 	}
-	if (key_input == )
+	if (key_input == CHANGE)
+	{
+		if (vars->edit.stat == 0)
+		{
+			vec_plus(&vars->descr.al.cr, vars->descr.al.cr, vec_set(0.1, 0.1, 0.1));
+			printf("al.cr : %f, %f, %f\n", vars->descr.al.cr.x, vars->descr.al.cr.y, vars->descr.al.cr.z);
+			draw_loop(vars, &vars->img, &vars->descr);
+		}
+	}
 	return (0);
 }

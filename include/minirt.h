@@ -1,8 +1,10 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH	1920
+# define HEIGHT	1080
+# define ON		1
+# define OFF	0
 
 typedef	struct s_vec3
 {
@@ -88,10 +90,21 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef	struct s_edit
+{
+	int	stat;
+	int	obj;
+	int	num;
+}	t_edit;
+
+
 typedef struct s_vars
 {
 	void	*mlx;
 	void	*win;
+	t_img	img;
+	t_descr	descr;
+	t_edit	edit;
 }	t_vars;
 
 #endif
