@@ -4,11 +4,10 @@
 #include "libft.h"
 #include "mlx.h"
 #include "draw.h"
+#include "edit.h"
 
 #include <unistd.h>
-
-#define ESC_KEY	53
-#define CHANGE	8
+#include <stdbool.h>
 
 #include <stdio.h> // test
 #include "vector.h"
@@ -107,21 +106,21 @@ static void	draw_loop(t_vars *vars, t_img *img, t_descr *descr)
 
 static int	key_press(int key_input, t_vars *vars)
 {
-	if (key_input == ESC_KEY)
+	if (key_input == KEY_ESC)
 	{
 		mlx_destroy_image(vars->mlx, vars->img.img);
 		mlx_destroy_window(vars->mlx, vars->win);
 		free_description(&vars->descr);
 		exit(EXIT_SUCCESS);
 	}
-	if (key_input == CHANGE)
+	else if (vars->edit.stat == false && key_input == KEY_E)
+		edit_on(vars);
+	else if (vars->edit.stat == true && key_input == KEY_ENTER)
+		edit_off(vars);
+	else if (vars->edit.stat == true)
 	{
-		if (vars->edit.stat == 0)
-		{
-			vec_plus(&vars->descr.al.cr, vars->descr.al.cr, vec_set(0.1, 0.1, 0.1));
-			printf("al.cr : %f, %f, %f\n", vars->descr.al.cr.x, vars->descr.al.cr.y, vars->descr.al.cr.z);
+		if (edit_mode(key_input, vars) == true)
 			draw_loop(vars, &vars->img, &vars->descr);
-		}
 	}
 	return (0);
 }

@@ -1,4 +1,5 @@
 #include "vector.h"
+#include "minirt.h"
 #include "draw.h"
 
 #include <math.h>

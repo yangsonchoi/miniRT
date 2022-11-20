@@ -95,6 +95,7 @@ typedef	struct s_edit
 	int	stat;
 	int	obj;
 	int	num;
+	int	opt;
 }	t_edit;
 
 

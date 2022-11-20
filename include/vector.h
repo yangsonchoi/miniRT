@@ -23,6 +23,13 @@ t_vec3	vec_set(double x, double y, double z);
 t_color	color_set(double x, double y, double z);
 
 /*
+** vector_cal3.c
+*/
+void	vec_move_side(t_vec3 *dest, t_vec3 input);
+void	vec_move_front(t_vec3 *dest, t_vec3 input);
+void	vec_rotate(t_vec3 *dest, int axis, int sign);
+
+/*
 ** ray_cal.c
 */
 void	ray_at(t_vec3 *dest, t_ray a, double b);
