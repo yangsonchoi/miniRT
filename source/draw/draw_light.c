@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_light.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachoi <yachoi@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/21 12:15:48 by yachoi            #+#    #+#             */
+/*   Updated: 2022/11/21 12:15:50 by yachoi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "draw.h"
 #include "minirt.h"
 #include "vector.h"
@@ -34,26 +46,5 @@ static t_vec3	diffuse_light(t_ray ray, t_rec *rec, t_descr *descr)
 	vec_convert_unit(light_dir, &light_dir);
 	kd = fmax(vec_dot(rec->norm, light_dir), 0.0);
 	vec_mul_db(&diff_light, descr->l.cb, kd);
-	
-	(void)ray;
-	// t_vec3	specular;
-	// t_vec3	view_dir;
-	// t_vec3	reflect_dir;
-	// double	temp;
-	// double	spec;
-	// double	ksn;
-	// double	ks;
-
-    // vec_mul_db(&view_dir, ray.dir, -1);
-	// vec_convert_unit(view_dir, &view_dir);
-	// vec_mul_db(&reflect_dir, light_dir, -1);
-	// temp = vec_dot(reflect_dir, rec->norm);
-	// vec_mul_db(&specular, rec->norm, temp * 2);
-	// vec_minus(&reflect_dir, reflect_dir, specular);
-    // ksn = 100; // shininess value
-    // ks = 0.7; // specular strength
-    // spec = pow(fmax(vec_dot(view_dir, reflect_dir), 0.0), ksn);
-    // vec_mul_db(&specular, descr->l.cb, ks *spec);
-	// vec_plus(&diff_light, diff_light, specular);
 	return (diff_light);
 }

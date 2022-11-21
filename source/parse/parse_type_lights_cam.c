@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_type_lights_cam.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachoi <yachoi@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/21 12:08:46 by yachoi            #+#    #+#             */
+/*   Updated: 2022/11/21 12:08:48 by yachoi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parse.h"
 #include "minirt.h"
 #include "utils.h"
@@ -8,9 +20,9 @@ void	parse_al(char **input, t_descr *descr)
 {
 	t_vec3	c;
 	double	r;
-	
-	if(descr->cnt.al_cnt != 0 || check_dcharp_num(3, input) == false)
-		err_exit_descr(descr, input);	
+
+	if (descr->cnt.al_cnt != 0 || check_dcharp_num(3, input) == false)
+		err_exit_descr(descr, input);
 	if (!check_syntax_dbl(input[1]) || !check_syntax_rgb(input[2]))
 		err_exit_descr(descr, input);
 	r = convert_double(input[1]);
@@ -26,8 +38,8 @@ void	parse_c(char **input, t_descr *descr)
 {
 	int	i;
 
-	if(descr->cnt.c_cnt != 0 || check_dcharp_num(4, input) == false)
-		err_exit_descr(descr, input);		
+	if (descr->cnt.c_cnt != 0 || check_dcharp_num(4, input) == false)
+		err_exit_descr(descr, input);
 	if (!check_syntax_vec(input[1]) || !check_syntax_vec(input[2]))
 		err_exit_descr(descr, input);
 	convert_vec3(input[1], &(descr->c.p), NULL, false);
@@ -52,9 +64,10 @@ void	parse_l(char **input, t_descr *descr)
 	t_vec3	raw_color;
 	double	b;
 
-	if(descr->cnt.l_cnt != 0 || check_dcharp_num(4, input) == false)
-		err_exit_descr(descr, input);		
-	if (!check_syntax_vec(input[1]) || !check_syntax_dbl(input[2]) || !check_syntax_rgb(input[3]))
+	if (descr->cnt.l_cnt != 0 || check_dcharp_num(4, input) == false)
+		err_exit_descr(descr, input);
+	if (!check_syntax_vec(input[1]) || !check_syntax_dbl(input[2])
+		|| !check_syntax_rgb(input[3]))
 		err_exit_descr(descr, input);
 	convert_vec3(input[1], &(descr->l.p), NULL, false);
 	b = convert_double(input[2]);

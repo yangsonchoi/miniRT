@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachoi <yachoi@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/21 11:59:52 by yachoi            #+#    #+#             */
+/*   Updated: 2022/11/21 11:59:53 by yachoi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "utils.h"
 #include "libft.h"
 
@@ -26,28 +38,25 @@ bool	check_syntax_dbl(char *input)
 {
 	int	i;
 	int	j;
-	int	z;
 
 	i = 0;
 	j = 0;
-	z = 0;
 	if (ft_isdigit(input[i]) != 1)
 	{
 		if (input[i] != '+' || input[i] != '-')
-			z = 1;
+			j = 1;
 		else
 			return (false);
 	}
-	while (ft_isdigit(input[i + z]) == 1)
+	while (ft_isdigit(input[i + j]) == 1)
 		i++;
-	if (i == 0 || (input[i + z] == '.' || input [i + z] == 0) == false)
+	if (i == 0 || (input[i + j] == '.' || input [i + j] == 0) == false)
 		return (false);
-	if (input[i + z] == '.')
+	if (input[i++] == '.')
 	{
-		j = 1;
-		while (ft_isdigit(input[i + j + z]) == 1)
+		while (ft_isdigit(input[i + j]) == 1)
 			j++;
-		if (j == 1 || input[i + j + z] != 0)
+		if (j == 1 || input[i + j] != 0)
 			return (false);
 	}
 	return (true);
@@ -83,7 +92,7 @@ bool	check_syntax_rgb(char *input)
 	char	**temp;
 	int		i;
 	int		j;
-	
+
 	temp = ft_split(input, ',');
 	i = 0;
 	while (temp[i] != NULL)

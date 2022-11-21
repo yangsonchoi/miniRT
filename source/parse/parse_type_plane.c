@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_type_plane.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachoi <yachoi@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/21 12:12:50 by yachoi            #+#    #+#             */
+/*   Updated: 2022/11/21 12:12:53 by yachoi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parse.h"
 #include "minirt.h"
 #include "utils.h"
@@ -8,14 +20,15 @@
 
 static t_plane	*add_plane(t_descr *descr);
 
-void parse_pl(char **input, t_descr *descr)
+void	parse_pl(char **input, t_descr *descr)
 {
-	t_plane *new;
+	t_plane	*new;
 
 	if (check_dcharp_num(4, input) == false)
 		err_exit_descr(descr, input);
 	new = add_plane(descr);
-	if (!check_syntax_vec(input[1]) || !check_syntax_vec(input[2]) || !check_syntax_rgb(input[3]))
+	if (!check_syntax_vec(input[1]) || !check_syntax_vec(input[2])
+		|| !check_syntax_rgb(input[3]))
 		err_exit_descr(descr, input);
 	convert_vec3(input[1], &new->p, NULL, false);
 	if (convert_vec3(input[2], &new->o, NULL, true) == false)
@@ -27,9 +40,9 @@ void parse_pl(char **input, t_descr *descr)
 
 static t_plane	*add_plane(t_descr *descr)
 {
-	int i;
-	t_plane **new_list;
-	t_plane *new;
+	int		i;
+	t_plane	**new_list;
+	t_plane	*new;
 
 	new_list = malloc(sizeof(t_plane *) * (descr->cnt.pl_cnt + 2));
 	if (new_list == NULL)

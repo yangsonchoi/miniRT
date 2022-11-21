@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   edit_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachoi <yachoi@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/21 13:28:07 by yachoi            #+#    #+#             */
+/*   Updated: 2022/11/21 13:28:08 by yachoi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "edit.h"
 #include "minirt.h"
 #include "vector.h"
@@ -7,9 +19,6 @@
 
 bool	edit_move(int key_input, t_vec3 cam, t_vec3 *pos)
 {
-	bool	ret;
-
-	ret = true;
 	if (key_input == KEY_A || key_input == KEY_D)
 	{
 		vec_move_side(&cam, cam);
@@ -31,8 +40,8 @@ bool	edit_move(int key_input, t_vec3 cam, t_vec3 *pos)
 	else if (key_input == KEY_E)
 		vec_plus(pos, *pos, vec_set(0, 0.5, 0));
 	else
-		ret = false;
-	return (ret);
+		return (false);
+	return (true);
 }
 
 bool	edit_rotation(int key_input, t_vec3 *orient)

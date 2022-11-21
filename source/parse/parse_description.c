@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_description.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachoi <yachoi@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/21 12:13:34 by yachoi            #+#    #+#             */
+/*   Updated: 2022/11/21 12:13:36 by yachoi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parse.h"
 #include "minirt.h"
 #include "libft.h"
@@ -39,8 +51,8 @@ static enum e_des_type	des_type(char *parse)
 	int	len;
 
 	if (parse == NULL)
-        return (EMPTY);
-    len = ft_strlen(parse);
+		return (EMPTY);
+	len = ft_strlen(parse);
 	if (ft_strncmp(parse, "A", len) == 0)
 		return (AMBIENT_LIGHT);
 	else if (ft_strncmp(parse, "C", len) == 0)

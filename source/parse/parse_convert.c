@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_convert.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachoi <yachoi@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/21 12:04:46 by yachoi            #+#    #+#             */
+/*   Updated: 2022/11/21 12:04:48 by yachoi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parse.h"
 #include "utils.h"
 #include "libft.h"
@@ -43,9 +55,9 @@ bool	convert_vec3(char *input, t_vec3 *vec, double *len, bool check)
 	free_dcharp(temp);
 	if (check == true)
 	{
-		if (temp_vec.x > 1.0 || temp_vec.x < -1.0 || 
-			temp_vec.y > 1.0 || temp_vec.y < -1.0 ||
-			temp_vec.z > 1.0 || temp_vec.z < -1.0 )
+		if (temp_vec.x > 1.0 || temp_vec.x < -1.0
+			|| temp_vec.y > 1.0 || temp_vec.y < -1.0
+			|| temp_vec.z > 1.0 || temp_vec.z < -1.0)
 			return (false);
 	}
 	if (len != NULL)

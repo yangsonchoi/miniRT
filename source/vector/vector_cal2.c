@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vector_cal2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachoi <yachoi@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/21 11:43:55 by yachoi            #+#    #+#             */
+/*   Updated: 2022/11/21 11:44:48 by yachoi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vector.h"
 #include "minirt.h"
 
@@ -38,6 +50,7 @@ double	vec_convert_unit(t_vec3 input, t_vec3 *dest)
 t_vec3	vec_set(double x, double y, double z)
 {
 	t_vec3	ret;
+
 	ret.x = x;
 	ret.y = y;
 	ret.z = z;
@@ -47,6 +60,7 @@ t_vec3	vec_set(double x, double y, double z)
 t_color	color_set(double x, double y, double z)
 {
 	t_color	ret;
+
 	ret.trgb[3] = 0;
 	ret.trgb[2] = x;
 	ret.trgb[1] = y;

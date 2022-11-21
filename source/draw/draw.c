@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachoi <yachoi@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/21 13:05:43 by yachoi            #+#    #+#             */
+/*   Updated: 2022/11/21 13:05:44 by yachoi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "draw.h"
 #include "minirt.h"
 #include "vector.h"
@@ -64,9 +76,7 @@ static t_color	shoot_ray(t_draw draw, t_descr *descr)
 
 	draw.h = HEIGHT - 1 - draw.h;
 	ray.p = descr->c.p;
-	ray.dir.x = draw.llc.x + (((double)(draw.w) / (double)(WIDTH - 1)) * draw.cam_h.x) + (((double)(draw.h) / (double)(HEIGHT - 1)) * draw.cam_v.x) - descr->c.p.x;
-	ray.dir.y = draw.llc.y + (((double)(draw.w) / (double)(WIDTH - 1)) * draw.cam_h.y) + (((double)(draw.h) / (double)(HEIGHT - 1)) * draw.cam_v.y) - descr->c.p.y;
-	ray.dir.z = draw.llc.z + (((double)(draw.w) / (double)(WIDTH - 1)) * draw.cam_h.z) + (((double)(draw.h) / (double)(HEIGHT - 1)) * draw.cam_v.z) - descr->c.p.z;
+	set_ray_dir(&ray, draw, descr);
 	if (hit_object(ray, &rec, descr) == true)
 	{	
 		ret = color_set(rec.c.x, rec.c.y, rec.c.z);
@@ -81,10 +91,24 @@ static t_color	shoot_ray(t_draw draw, t_descr *descr)
 	return (ret);
 }
 
+static void	set_ray_dir(t_ray *ray, t_draw draw, t_descr *descr)
+{
+	ray->dir.x = draw.llc.x + (((double)(draw.w) / (double)(WIDTH - 1))
+			* draw.cam_h.x) + (((double)(draw.h) / (double)(HEIGHT - 1))
+			* draw.cam_v.x) - descr->c.p.x;
+	ray->dir.y = draw.llc.y + (((double)(draw.w) / (double)(WIDTH - 1))
+			* draw.cam_h.y) + (((double)(draw.h) / (double)(HEIGHT - 1))
+			* draw.cam_v.y) - descr->c.p.y;
+	ray->dir.z = draw.llc.z + (((double)(draw.w) / (double)(WIDTH - 1))
+			* draw.cam_h.z) + (((double)(draw.h) / (double)(HEIGHT - 1))
+			* draw.cam_v.z) - descr->c.p.z;
+}
+
 static void	draw_pixel(t_color color, t_draw draw, t_img *img)
 {
 	char	*dst;
 
-	dst = img->addr + (draw.h * img->size_len + (draw.w * (img->bits_per_pixel / 8)));
+	dst = img->addr
+		+ (draw.h * img->size_len + (draw.w * (img->bits_per_pixel / 8)));
 	*(unsigned int *)dst = color.color;
 }
