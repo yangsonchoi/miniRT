@@ -24,7 +24,7 @@
 
 static void	initial_mlx(t_vars *vars, t_img *img);
 static void	draw_loop(t_vars *vars, t_img *img, t_descr *descr);
-static int	key_press(int key_input, t_vars *vars);
+static void	key_press(int key_input, t_vars *vars);
 
 int	main(int argc, char **argv)
 {
@@ -40,6 +40,7 @@ int	main(int argc, char **argv)
 	initial_mlx(&vars, &vars.img);
 	draw_loop(&vars, &vars.img, &vars.descr);
 	mlx_key_hook(vars.win, key_press, &vars);
+	mlx_hook(vars.win, 17, 1L << 17, win_destroy, &vars);
 	mlx_loop(vars.mlx);
 	free_description(&vars.descr);
 }
@@ -59,7 +60,7 @@ static void	draw_loop(t_vars *vars, t_img *img, t_descr *descr)
 	mlx_put_image_to_window(vars->mlx, vars->win, img->img, 0, 0);
 }
 
-static int	key_press(int key_input, t_vars *vars)
+static void	key_press(int key_input, t_vars *vars)
 {
 	if (key_input == KEY_ESC)
 	{
@@ -77,5 +78,12 @@ static int	key_press(int key_input, t_vars *vars)
 		if (edit_mode(key_input, vars) == true)
 			draw_loop(vars, &vars->img, &vars->descr);
 	}
-	return (0);
+}
+
+static void	win_destroy(t_vars *vars)
+{
+	mlx_destroy_image(vars->mlx, vars->img.img);
+	mlx_destroy_window(vars->mlx, vars->win);
+	free_description(&vars->descr);
+	exit(EXIT_SUCCESS);
 }
