@@ -1,19 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachoi <yachoi@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/27 12:13:47 by yachoi            #+#    #+#             */
+/*   Updated: 2022/11/27 12:13:48 by yachoi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PARSE_H
 # define PARSE_H
 
 # include "minirt.h"
 # include <stdbool.h>
 
-enum    e_des_type
+enum	e_des_type
 {
-    AMBIENT_LIGHT,
-    CAMERA,
-    LIGHT,
-    SPHERE,
-    PLANE,
-    CYLINDER,
-    EMPTY,
-    ERROR,
+	AMBIENT_LIGHT,
+	CAMERA,
+	LIGHT,
+	SPHERE,
+	PLANE,
+	CYLINDER,
+	EMPTY,
+	ERROR,
 };
 
 /*
@@ -43,17 +55,16 @@ void	parse_l(char **input, t_descr *descr);
 /*
 ** parse_type_sphere.c
 */
-void parse_sp(char **input, t_descr *descr);
+void	parse_sp(char **input, t_descr *descr);
 
 /*
 ** parse_type_plane.c
 */
-void parse_pl(char **input, t_descr *descr);
+void	parse_pl(char **input, t_descr *descr);
 
 /*
 ** parse_type_cylinder.c
 */
-void parse_cy(char **input, t_descr *descr);
-
+void	parse_cy(char **input, t_descr *descr);
 
 #endif

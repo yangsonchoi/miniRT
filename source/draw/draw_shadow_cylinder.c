@@ -31,7 +31,7 @@ bool	cylinder_shadow(t_ray ray, t_descr *descr, double t_max)
 	while (descr->cy[i] != NULL)
 	{
 		vec_minus(&oc, ray.p, descr->cy[i]->p);
-		if (hit_cy_side_shadow(ray, descr->cy[i], t_max, oc) == true)
+		if (hit_cy_side_sh(ray, descr->cy[i], t_max, oc) == true)
 			return (true);
 		if (hit_cy_cap_up_shadow(ray, descr->cy[i], t_max) == true)
 			return (true);

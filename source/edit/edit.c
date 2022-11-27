@@ -46,8 +46,8 @@ bool	edit_mode(int key_input, t_vars *vars)
 
 void	edit_on(t_vars *vars)
 {
-	printf("\nEdit mode: ON\n\nAmbient light: a\nCamera: c\n\
-		Light: l\nSphere: s\nplane: p\ncylinder y\nEnd edit: Enter\n");
+	printf("\nEdit mode: ON\n\nAmbient light: a\nCamera: c\n");
+	printf("Light: l\nSphere: s\nplane: p\ncylinder y\nEnd edit: Enter\n");
 	vars->edit.stat = true;
 	vars->edit.obj = EMPTY;
 	vars->edit.num = -1;
@@ -107,13 +107,13 @@ static void	edit_object_instruction(t_vars *vars)
 			vars->edit.obj = EMPTY;
 		}
 		else
-			printf("\nObject set: Sphere\n\n Set sphere num: [0,%d]\n",
+			printf("\nObject set: Sphere\n\nSet sphere num: [0,%d]\n",
 				vars->descr.cnt.sp_cnt - 1);
 	}
 	else if (vars->edit.obj == PLANE)
-		printf("\nObject set: Plane\n\n Set plane num: [0,%d]\n",
+		printf("\nObject set: Plane\n\nSet plane num: [0,%d]\n",
 			vars->descr.cnt.pl_cnt - 1);
 	else if (vars->edit.obj == CYLINDER)
-		printf("\nObject set: Cylinder\n\n Set cylinder num: [0,%d]\n",
+		printf("\nObject set: Cylinder\n\nSet cylinder num: [0,%d]\n",
 			vars->descr.cnt.cy_cnt - 1);
 }

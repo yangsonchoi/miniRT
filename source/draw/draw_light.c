@@ -18,9 +18,9 @@
 #include <math.h>
 #include <stdbool.h>
 
-static t_vec3	diffuse_light(t_ray ray, t_rec *rec, t_descr *descr);
+static t_vec3	diffuse_light(t_rec *rec, t_descr *descr);
 
-void	set_color(t_vec3 obj, t_ray ray, t_rec *rec, t_descr *descr)
+void	set_color(t_vec3 obj, t_rec *rec, t_descr *descr)
 {
 	t_vec3	light;
 
@@ -28,7 +28,7 @@ void	set_color(t_vec3 obj, t_ray ray, t_rec *rec, t_descr *descr)
 	if (hit_object_shadow(*rec, descr) == false)
 	{
 		if (descr->cnt.l_cnt != 0)
-			vec_plus(&light, light, diffuse_light(ray, rec, descr));
+			vec_plus(&light, light, diffuse_light(rec, descr));
 	}
 	if (descr->cnt.al_cnt != 0)
 		vec_plus(&light, light, descr->al.cr);
@@ -36,7 +36,7 @@ void	set_color(t_vec3 obj, t_ray ray, t_rec *rec, t_descr *descr)
 	max_color(&rec->c, rec->c);
 }
 
-static t_vec3	diffuse_light(t_ray ray, t_rec *rec, t_descr *descr)
+static t_vec3	diffuse_light(t_rec *rec, t_descr *descr)
 {
 	t_vec3	light_dir;
 	double	kd;

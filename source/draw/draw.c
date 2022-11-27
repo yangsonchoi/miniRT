@@ -22,6 +22,7 @@
 
 static void		set_viewport(t_draw *draw, t_descr *descr);
 static t_color	shoot_ray(t_draw draw, t_descr *descr);
+static void		set_ray_dir(t_ray *ray, t_draw draw, t_descr *descr);
 static void		draw_pixel(t_color color, t_draw draw, t_img *img);
 
 void	draw_img(t_img *img, t_descr *descr)

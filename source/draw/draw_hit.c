@@ -72,7 +72,7 @@ static bool	hit_sphere(t_ray ray, t_sphere *sp, t_rec *rec, t_descr *descr)
 			return (false);
 	}
 	set_rec(root, rec, ray, sp);
-	set_color(sp->c, ray, rec, descr);
+	set_color(sp->c, rec, descr);
 	return (true);
 }
 
@@ -104,6 +104,6 @@ static bool	hit_plane(t_ray ray, t_plane *pl, t_rec *rec, t_descr *descr)
 	ray_at(&rec->p, ray, t);
 	rec->norm = pl->o;
 	set_face(ray, rec);
-	set_color(pl->c, ray, rec, descr);
+	set_color(pl->c, rec, descr);
 	return (true);
 }

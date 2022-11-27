@@ -1,4 +1,16 @@
-#ifndef	DRAW_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachoi <yachoi@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/27 12:16:22 by yachoi            #+#    #+#             */
+/*   Updated: 2022/11/27 12:16:24 by yachoi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef DRAW_H
 # define DRAW_H
 
 # include "minirt.h"
@@ -8,7 +20,7 @@
 # define MIN 1e-6
 # define MAX INFINITY
 
-typedef	struct s_draw
+typedef struct s_draw
 {
 	t_vec3	cam_h;
 	t_vec3	cam_v;
@@ -17,7 +29,7 @@ typedef	struct s_draw
 	int		w;
 }	t_draw;
 
-typedef	struct	s_ray
+typedef struct s_ray
 {
 	t_vec3	p;
 	t_vec3	dir;
@@ -32,7 +44,6 @@ typedef struct s_rec
 	t_vec3	c;
 	bool	face;
 }	t_rec;
-
 
 /*
 ** draw.c
@@ -52,7 +63,7 @@ bool	hit_cylinder(t_ray ray, t_cylinder *cy, t_rec *rec, t_descr *descr);
 /*
 ** draw_light.c
 */
-void	set_color(t_vec3 obj, t_ray ray, t_rec *rec, t_descr *descr);
+void	set_color(t_vec3 obj, t_rec *rec, t_descr *descr);
 
 /*
 ** draw_shadow.c
@@ -62,6 +73,6 @@ bool	hit_object_shadow(t_rec rec, t_descr *descr);
 /*
 ** draw_shadow_cylinder.c
 */
-bool	cylinder_shadow(t_ray ray, t_descr *descr, 	double	t_max);
+bool	cylinder_shadow(t_ray ray, t_descr *descr, double t_max);
 
 #endif

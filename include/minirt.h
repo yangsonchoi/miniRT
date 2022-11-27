@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minirt.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yachoi <yachoi@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/27 12:14:33 by yachoi            #+#    #+#             */
+/*   Updated: 2022/11/27 12:14:34 by yachoi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINIRT_H
 # define MINIRT_H
 
@@ -6,7 +18,7 @@
 # define ON		1
 # define OFF	0
 
-typedef	struct s_vec3
+typedef struct s_vec3
 {
 	double	x;
 	double	y;
@@ -90,14 +102,13 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-typedef	struct s_edit
+typedef struct s_edit
 {
 	int	stat;
 	int	obj;
 	int	num;
 	int	opt;
 }	t_edit;
-
 
 typedef struct s_vars
 {

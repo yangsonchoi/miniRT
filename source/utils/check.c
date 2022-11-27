@@ -56,7 +56,7 @@ bool	check_syntax_dbl(char *input)
 	{
 		while (ft_isdigit(input[i + j]) == 1)
 			j++;
-		if (j == 1 || input[i + j] != 0)
+		if (j == 0 || input[i + j] != 0)
 			return (false);
 	}
 	return (true);
