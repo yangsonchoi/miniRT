@@ -6,7 +6,7 @@
 /*   By: yachoi <yachoi@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:31:57 by yachoi            #+#    #+#             */
-/*   Updated: 2022/11/21 13:31:59 by yachoi           ###   ########.fr       */
+/*   Updated: 2022/11/28 09:49:30 by yachoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 
 static void	initial_mlx(t_vars *vars, t_img *img);
 static void	draw_loop(t_vars *vars, t_img *img, t_descr *descr);
-static void	key_press(int key_input, t_vars *vars);
+static int	key_press(int key_input, t_vars *vars);
+static int	win_destroy(t_vars *vars);
 
 int	main(int argc, char **argv)
 {
@@ -60,7 +61,7 @@ static void	draw_loop(t_vars *vars, t_img *img, t_descr *descr)
 	mlx_put_image_to_window(vars->mlx, vars->win, img->img, 0, 0);
 }
 
-static void	key_press(int key_input, t_vars *vars)
+static int	key_press(int key_input, t_vars *vars)
 {
 	if (key_input == KEY_ESC)
 	{
@@ -78,9 +79,10 @@ static void	key_press(int key_input, t_vars *vars)
 		if (edit_mode(key_input, vars) == true)
 			draw_loop(vars, &vars->img, &vars->descr);
 	}
+	return (0);
 }
 
-static void	win_destroy(t_vars *vars)
+static int	win_destroy(t_vars *vars)
 {
 	mlx_destroy_image(vars->mlx, vars->img.img);
 	mlx_destroy_window(vars->mlx, vars->win);

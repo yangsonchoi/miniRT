@@ -46,7 +46,7 @@ void	free_description(t_descr *descr)
 			free(descr->pl[i++]);
 		free(descr->pl);
 	}
-	if (descr->sp != NULL)
+	if (descr->cy != NULL)
 	{
 		i = 0;
 		while ((descr->cy)[i] != NULL)

@@ -28,6 +28,8 @@ bool	hit_cylinder(t_ray ray, t_cylinder *cy, t_rec *rec, t_descr *descr)
 	bool	ret;
 
 	ret = false;
+	if (cy->h < 0 || cy->r < 0)
+		return (false);
 	if (hit_cy_side(ray, cy, rec, descr) == true)
 		ret = true;
 	if (hit_cap_up(ray, cy, rec, descr) == true)

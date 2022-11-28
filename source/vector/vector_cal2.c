@@ -36,7 +36,7 @@ double	vec_convert_unit(t_vec3 input, t_vec3 *dest)
 	{
 		dest->x = 0.0;
 		dest->y = 0.0;
-		dest->z = 1.0;
+		dest->z = -1.0;
 	}
 	else
 	{

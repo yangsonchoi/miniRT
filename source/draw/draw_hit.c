@@ -62,7 +62,7 @@ static bool	hit_sphere(t_ray ray, t_sphere *sp, t_rec *rec, t_descr *descr)
 	a = vec_dot(ray.dir, ray.dir);
 	half_b = vec_dot(oc, ray.dir);
 	discriminant = pow(half_b, 2) - (a * (vec_dot(oc, oc) - pow(sp->r, 2)));
-	if (discriminant < 0)
+	if (discriminant < 0 || sp->r < 0)
 		return (false);
 	root = ((half_b * -1) - sqrt(discriminant)) / a;
 	if (root < MIN || root > rec->t_max)

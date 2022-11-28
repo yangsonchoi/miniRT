@@ -56,6 +56,8 @@ void	parse_c(char **input, t_descr *descr)
 	descr->c.fov = atoi(input[3]);
 	if (descr->c.fov < 0 || descr->c.fov > 180)
 		err_exit_descr(descr, input);
+	if (descr->c.fov == 180)
+		descr->c.fov = 179.9;
 	descr->cnt.c_cnt = 1;
 }
 

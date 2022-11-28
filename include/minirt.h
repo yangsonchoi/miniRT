@@ -40,7 +40,7 @@ typedef struct s_camera
 {
 	t_vec3	p;
 	t_vec3	o;
-	int		fov;
+	double	fov;
 }	t_camera;
 
 typedef struct s_light

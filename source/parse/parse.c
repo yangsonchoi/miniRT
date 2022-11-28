@@ -28,7 +28,7 @@ void	parse_scene(t_descr *descr, char *file_name)
 	char	*trim;
 
 	if (ft_strchr(file_name, '.') && ft_strncmp(ft_strchr(file_name, '.'), \
-		".rt", ft_strlen(ft_strchr(file_name, '.'))))
+		".rt", 3))
 		err_exit("invalid file name", 0);
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
@@ -40,7 +40,7 @@ void	parse_scene(t_descr *descr, char *file_name)
 			break ;
 		trim = ft_strtrim(temp, "\n");
 		free(temp);
-		printf("gnl: %s\n", trim);
+		printf("parsing: %s\n", trim);
 		parse_description(trim, descr);
 		free(trim);
 	}

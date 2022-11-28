@@ -82,7 +82,7 @@ static void	edit_object_type(int key_input, t_vars *vars)
 	}
 	else if (key_input == KEY_Y)
 	{
-		if (vars->descr.cnt.pl_cnt == 0)
+		if (vars->descr.cnt.cy_cnt == 0)
 			printf("\nNo cylinder in the scene\n");
 		else
 			vars->edit.obj = CYLINDER;

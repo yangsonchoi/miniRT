@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: yachoi <yachoi@student.42seoul.kr>         +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/11/28 09:50:01 by yachoi            #+#    #+#              #
+#    Updated: 2022/11/28 09:50:03 by yachoi           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME		= miniRT
 
 CC			= cc -g
@@ -96,6 +108,8 @@ clean :
 fclean : clean
 	$(RM) $(RMFLAGS) $(LIBFT)
 	$(RM) $(RMFLAGS) $(NAME)
+	$(RM) $(RMFLAGS) $(MLX)
+	$(RM) $(RMFLAGS) libmlx.dylib
 
 re : fclean $(NAME)
 
