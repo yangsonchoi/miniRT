@@ -12,7 +12,7 @@
 
 NAME		= miniRT
 
-CC			= cc -g
+CC			= cc
 CFLAGS		= -Wall -Werror -Wextra
 LDFLAGS		= -lm -lft -lmlx -L$(LIBFT_DIR) -L$(MLX_DIR)
 INCLUDES	= -I$(HDRS_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
